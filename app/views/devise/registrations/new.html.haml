@@ -5,6 +5,7 @@
         Sign up
       %div.ui.segment
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = f.input :username, required: false, autofocus: true, label: false, placeholder: "Username"
           = f.input :email, required: true, autofocus: true, label: false, placeholder: "Email"
           = f.input :password, label: false, placeholder: "password", required: true
           = f.input :password_confirmation, required: true, label: false, placeholder: "Re-enter password"
