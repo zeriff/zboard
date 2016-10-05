@@ -1,0 +1,13 @@
+#session
+  %div.ui.two.column.center.aligned.stackable.grid
+    %div.six.wide.column
+      %h2
+        Log in
+      %div.ui.segment
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          %label
+          = f.input :email, required: false, autofocus: true, label: false, placeholder: "Email"
+          = f.input :password, required: false, label: false, placeholder: "Password"
+          -# = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+          = f.button :submit, "Log in"
+      = render "devise/shared/links"

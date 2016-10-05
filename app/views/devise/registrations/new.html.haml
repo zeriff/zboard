@@ -1,0 +1,12 @@
+#session
+  %div.ui.two.column.center.aligned.stackable.grid
+    %div.six.wide.column
+      %h2
+        Sign up
+      %div.ui.segment
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = f.input :email, required: true, autofocus: true, label: false, placeholder: "Email"
+          = f.input :password, label: false, placeholder: "password", required: true
+          = f.input :password_confirmation, required: true, label: false, placeholder: "Re-enter password"
+          = f.button :submit, "Sign up"
+      = render "devise/shared/links"
