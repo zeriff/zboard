@@ -18,4 +18,10 @@
       - if type == 'error'
         :javascript
             toastr.error('#{msg}')
-    = yield
+    = link_to "logout", destroy_user_session_path, method: :delete, class: "ui red basic button"
+
+    = link_to "Edit profile", edit_user_registration_path, class: "ui blue basic button"
+
+    = link_to "New Pin", new_pin_path, class: "ui blue basic button"
+    #content
+      = yield

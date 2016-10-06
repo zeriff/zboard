@@ -1,0 +1,7 @@
+= simple_form_for(@pin) do |f|
+  = f.error_notification
+  = f.input :title
+  = f.input :image 
+  = f.input :pin_url, placeholder: "http://"
+  = f.input :desription,:input_html => {:rows => 5}
+  = f.button :submit

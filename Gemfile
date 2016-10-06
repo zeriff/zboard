@@ -13,6 +13,8 @@ gem 'devise', '~> 4.2'
 gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'simple_form', '~> 3.3', '>= 3.3.1'
 gem 'semantic-ui-sass', '~> 2.2', '>= 2.2.4.0'
+gem 'carrierwave', '~> 0.11.2'
+gem 'masonry-rails', '~> 0.2.4'
 
 group :development, :test do
   gem 'byebug', platform: :mri

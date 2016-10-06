@@ -1,0 +1,31 @@
+// Place all the styles related to the pins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#pins{
+		margin: auto;
+}
+
+.box {
+		padding: 6px;
+		width: 225px;
+}
+
+.editform {
+	margin: auto;
+}
+
+h2 {
+	font-size: 22px;
+	margin: 0;
+	padding: 25px 10px;
+}
+
+p {
+  font-size: 18px;
+}
+
+.pinform {
+  display: none;
+}

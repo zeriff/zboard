@@ -10,13 +10,17 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require toastr.min
  *= require_self
+ *= require 'masonry/transitions'
+ *= require 'masonry/infinitescroll'
+ *= require_tree .
  */
 
 @import "semantic-ui";
-
+body{
+    width: 100%;
+}
 
 #session {
   position: fixed;
@@ -26,4 +30,8 @@
 
 #toast-container{
   margin-top: 60px;
+}
+
+#content {
+  margin-top: 50px;
 }
