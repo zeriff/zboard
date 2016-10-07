@@ -22,10 +22,22 @@ h2 {
 	padding: 25px 10px;
 }
 
-p {
-  font-size: 18px;
-}
-
 .pinform {
   display: none;
+}
+
+.title {
+  font-size: 22px;
+	font-weight: bold;
+//	font-weight: normal;;
+}
+
+.description {
+  font-size: 18px;
+	font-weight: normal;;
+}
+
+.pincontent{
+	text-align: center;
+	margin-top: 10%;
 }

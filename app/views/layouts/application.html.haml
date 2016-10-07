@@ -8,6 +8,26 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    %div.ui.top.fixed.mini.menu
+      %div.ui.container
+        %div.item
+          = link_to "Board", root_path, class: "ui circular google plus icon button"
+        %div.right.menu
+        - if user_signed_in?
+          %div.item
+            = link_to "New", new_pin_path, class: "ui basic green button"
+          %div.item
+            %button.ui.circular.facebook.icon.button
+              %i.user.icon
+          %div.item
+            = link_to destroy_user_session_path, method: :delete, class: "ui circular google plus icon button" do
+              %i.power.icon
+        - else
+          %div.item
+            = link_to "Sign In", new_user_session_path, class: "ui basic blue button"
+          %div.item
+            = link_to "Sign Up", new_user_registration_path, class: "ui basic grey button"
+
     - flash.each do |type, msg|
       - if type == 'notice'
         :javascript
@@ -18,10 +38,23 @@
       - if type == 'error'
         :javascript
             toastr.error('#{msg}')
-    = link_to "logout", destroy_user_session_path, method: :delete, class: "ui red basic button"
-
-    = link_to "Edit profile", edit_user_registration_path, class: "ui blue basic button"
-
-    = link_to "New Pin", new_pin_path, class: "ui blue basic button"
     #content
-      = yield
+      %div.ui.container
+        =yield
+  -# - flash.each do |type, msg|
+    -#   - if type == 'notice'
+    -#     :javascript
+    -#         toastr.info('#{msg}')
+    -#   - if type == 'alert'
+    -#     :javascript
+    -#         toastr.warning('#{msg}')
+    -#   - if type == 'error'
+    -#     :javascript
+    -#         toastr.error('#{msg}')
+    -# = link_to "logout", destroy_user_session_path, method: :delete, class: "ui red basic button"
+    -#
+    -# = link_to "Edit profile", edit_user_registration_path, class: "ui blue basic button"
+    -#
+    -# = link_to "New Pin", new_pin_path, class: "ui blue basic button"
+    -# #content
+    -#   = yield
