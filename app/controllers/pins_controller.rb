@@ -19,6 +19,22 @@ class PinsController < ApplicationController
     @pin = Pin.new
   end
 
+  # POST /getinfo
+  def getinfo
+    @pin = Pin.new
+    @pin.pin_url = params[:pin_url];
+    remotePin = MetaInspector.new(params[:pin_url])
+    @pin.remote_image_url = remotePin.meta['og:image']
+    @pin.title = remotePin.best_title
+    @pin.description = remotePin.meta['description']
+
+    respond_to do |format|
+      format.html { render :new }
+      format.json { render json: @pin }
+    end
+  end
+
+
   # GET /pins/1/edit
   def edit
   end
@@ -71,6 +87,6 @@ class PinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pin_params
-      params.require(:pin).permit(:title, :desription, :pin_url, :image)
+      params.require(:pin).permit(:title, :description, :image, :remote_image_url, :pin_url)
     end
 end

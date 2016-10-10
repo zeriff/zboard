@@ -1,4 +1,4 @@
 class Pin < ApplicationRecord
   belongs_to :user
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, PinImageUploader
 end

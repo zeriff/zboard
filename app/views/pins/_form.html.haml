@@ -1,7 +1,24 @@
-= simple_form_for(@pin) do |f|
-  = f.error_notification
+= simple_form_for @pin, :html => {multipart: true}   do |f|
+  - if @pin.remote_image_url != nil
+    = f.button :submit, value: "Save"
+    = link_to "Cancel", new_pin_path, class: "ui red button"
+    %div.ui.divider
+    %div.ui.segment
+      %div.ui.horizontal.divider
+        Image
+      = image_tag(@pin.remote_image_url, class: "ui centered large image")
+      = f.input :remote_image_url, as: :hidden
+      %div.ui.horizontal.divider
+        Or
+      = f.input :image, label: false
+  - if @pin.remote_image_url == nil
+    %div.ui.segment
+      = f.input :image
+      %div.ui.horizontal.divider
+        Or
+      = f.input :remote_image_url, label: "Image url"
   = f.input :title
-  = f.input :image 
   = f.input :pin_url, placeholder: "http://"
-  = f.input :desription,:input_html => {:rows => 5}
-  = f.button :submit
+  = f.input :description,:input_html => {:rows => 5}
+  - if @pin.remote_image_url == nil
+    = f.button :submit

@@ -15,12 +15,15 @@ gem 'simple_form', '~> 3.3', '>= 3.3.1'
 gem 'semantic-ui-sass', '~> 2.2', '>= 2.2.4.0'
 gem 'carrierwave', '~> 0.11.2'
 gem 'masonry-rails', '~> 0.2.4'
+gem 'metainspector'
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri
 end
 group :development do
   gem 'web-console'
+  gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'better_errors'
   gem 'listen', '~> 3.0.5'
