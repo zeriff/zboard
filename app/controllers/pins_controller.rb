@@ -1,12 +1,12 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :getbycategory]
   respond_to :js
 
   # GET /pins
   # GET /pins.json
   def index
-    @pins = Pin.all
+    @pins = Pin.all.order("created_at desc")
   end
 
   # GET /pins/1
@@ -19,19 +19,35 @@ class PinsController < ApplicationController
     @pin = Pin.new
   end
 
-  # POST /getinfo
+  # POST /pin/getinfo
   def getinfo
     @pin = Pin.new
-    @pin.pin_url = params[:pin_url];
-    remotePin = MetaInspector.new(params[:pin_url])
-    @pin.remote_image_url = remotePin.meta['og:image']
-    @pin.title = remotePin.best_title
-    @pin.description = remotePin.meta['description']
-
+    begin
+      @pin.pin_url = params[:pin_url];
+      @pin.category_id = params[:category][:category_id]
+      @pin.board_id = params[:board][:board_id]
+      remotePin = MetaInspector.new(params[:pin_url],download_images: false)
+      @pin.remote_image_url = remotePin.meta['og:image']
+      @pin.title = remotePin.best_title
+      @pin.description = remotePin.meta['description']
+    rescue
+      @pin = Pin.new
+      flash[:error] = "Something went wrong please try again"
+    end
     respond_to do |format|
       format.html { render :new }
       format.json { render json: @pin }
     end
+  end
+
+  #GET /pins/category/:category_id
+  def getbycategory
+    if params[:page] == nil
+      @paginate = true
+    else
+      @paginate = false
+    end
+    @pins = Pin.where(category_id: params[:category_id]).paginate(:page => params[:page]).order("created_at desc")
   end
 
 
@@ -87,6 +103,6 @@ class PinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pin_params
-      params.require(:pin).permit(:title, :description, :image, :remote_image_url, :pin_url)
+      params.require(:pin).permit(:title, :description, :category_id, :board_id, :image, :remote_image_url, :pin_url)
     end
 end

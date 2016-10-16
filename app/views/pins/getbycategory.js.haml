@@ -1,0 +1,15 @@
+- if @paginate
+  $('#pins').html("#{j (render @pins)}");
+- else
+  $('#pins').append($('#{escape_javascript(render @pins )}')).masonry( 'appended', $('#{escape_javascript(render @pins )}'));
+
+
+$('.load-more-pins').attr('class', 'load-more-pins ui circular blue button');
+$('.load-more-pins').text('Load more pins');
+$('.load-more-pins').attr('href', '#{categorize_path page: @pins.next_page}');
+
+- unless @pins.next_page
+  $('.load-more-pins').attr('class', 'load-more-pins ui disabled circular button');
+  $('.load-more-pins').text('No more pins to show');
+
+board.refreshMasonry();

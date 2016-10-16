@@ -1,0 +1,18 @@
+%div.ui.segment
+  %div.ui.two.column.centered.stackable.grid
+    %div.four.wide.column
+      = image_tag current_user.avatar_url || "http://res.cloudinary.com/ddjfkqvr7/image/upload/v1476526817/girl-rai_ents_c3z2bt.jpg", class: "ui small centered circular image"
+      %h1.centertext
+        = @board.user.username
+    %div.six.wide.column
+      %br
+      %div.ui.horizontal.divider
+        collection
+      - @board.user.boards.each do |b|
+        = link_to b.name, user_board_path(b.user.username,b.id), class: "ui button"
+
+%h1
+  = @board.name
+%div.ui.divider
+.pins.transitions-enabled
+  = render @pins

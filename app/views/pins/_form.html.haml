@@ -1,7 +1,7 @@
 = simple_form_for @pin, :html => {multipart: true}   do |f|
   - if @pin.remote_image_url != nil
     = f.button :submit, value: "Save"
-    = link_to "Cancel", new_pin_path, class: "ui red button"
+    = link_to "Cancel", new_pin_path, class: "ui small red button"
     %div.ui.divider
     %div.ui.segment
       %div.ui.horizontal.divider
@@ -17,6 +17,8 @@
       %div.ui.horizontal.divider
         Or
       = f.input :remote_image_url, label: "Image url"
+  = f.input :category_id, collection: Category.all, label_method: :name, value_method: :id, label: "Category",include_blank: true
+  = f.input :board_id, collection: Board.where(user_id: current_user.id), label_method: :name, value_method: :id, label: "Category",include_blank: true
   = f.input :title
   = f.input :pin_url, placeholder: "http://"
   = f.input :description,:input_html => {:rows => 5}

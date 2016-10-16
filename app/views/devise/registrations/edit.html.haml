@@ -4,7 +4,7 @@
       %h2
         Edit #{resource_name.to_s.humanize}
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-        = f.error_notification
+        = f.input :username, placeholder: "Username", required: true, autofocus: true, label: false
         = f.input :email, placeholder: "Email", required: true, autofocus: true, label: false
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
           %p

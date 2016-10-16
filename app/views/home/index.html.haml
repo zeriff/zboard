@@ -1,2 +1,14 @@
-#pins.transitions-enabled
+%div.ui.mini.floating.labeled.icon.dropdown.button
+  %i.filter.icon
+  %span.text
+    Category
+  %div.menu
+    = link_to "All", root_path, class: 'item'
+    - Category.all.each do |c|
+      = link_to c.name, categorize_path(c.id),remote: true, class: 'item'
+#pins.transitions-enabled.infinite-scroll
   = render @pins
+%div.ui.two.column.center.aligned.stackable.grid
+  %div.six.wide.column
+    %br
+    = link_to 'Load More Pins', root_path(:page => @pins.next_page), :class => 'load-more-pins ui circular blue button', :remote => true if @pins.next_page

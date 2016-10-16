@@ -1,0 +1,42 @@
+%div.ui.segment{style: "background-image: url('#{Pin.find(50).image_url}'); background-repeat: no-repeat;  background-size: cover; background-position: top"}
+  %div.ui.mini.orange.right.floated.pointing.dropdown.icon.button
+    %i.setting.icon
+    %div.menu
+      = link_to "Upload Cover", new_board_path, class: "item"
+      = link_to "Edit Profile", edit_user_registration_path, class: "item"
+      = link_to "Add new board", new_board_path, class: "item"
+  .profilecontainer
+    %div.ui.two.column.grid
+      %div.three.wide.column
+        .dp
+          = image_tag @user.avatar_url || "http://res.cloudinary.com/ddjfkqvr7/image/upload/v1476526817/girl-rai_ents_c3z2bt.jpg", class: "ui floated circular image"
+      %div.ten.wide.column
+        %div.ui.mini.vertical.buttons
+          %div.ui.labeled.icon.secondary.button
+            %i.user.icon
+            = @user.username
+          %div.ui.labeled.icon.button
+            %i.mail.icon
+            = @user.email
+          %div.ui.labeled.icon.button
+            %i.location.arrow.icon
+            Mumbai, India
+          = render "follows/form", user: @user
+      -# %div.six.wide.column
+        -# = link_to "Edit Profile", edit_user_registration_path, class: "ui mini right floated teal button"
+        -# = link_to "Add new board", new_board_path, class: "ui mini right floated button"
+%br
+= link_to "Add new board", new_board_path, class: "ui button"
+
+- @boards.each do |board|
+  %h1
+    = board.name
+  %div.ui.divider
+  .pins.transitions-enabled
+    = render board.pins.last(10).reverse
+  %br
+  = link_to "See more", user_board_path(@user.username, board), class: "ui mini basic red right floated button"
+
+%br
+%div.ui.horizontal.divider
+  = link_to "Show all", user_pins_path(@user.username), class: "ui button"

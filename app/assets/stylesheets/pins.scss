@@ -7,9 +7,13 @@
 		margin: auto;
 }
 
+.pins{
+		margin: auto;
+}
+
 .box {
-		padding: 6px;
-		width: 225px;
+		padding: 5px;
+		width: 225.4px;
 }
 
 .editform {
@@ -40,4 +44,18 @@ h2 {
 .pincontent{
 	text-align: center;
 	margin-top: 10%;
+}
+
+@media only screen and (max-width: 500px) {
+	.box {
+			padding: 3px;
+			width: 160px;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	.box {
+			padding: 3px;
+			width: 140px;
+	}
 }

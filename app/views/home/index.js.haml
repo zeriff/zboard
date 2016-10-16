@@ -1,0 +1,8 @@
+$('#pins').append('#{escape_javascript(render @pins )}');
+board.refreshMasonry();
+
+$('.load-more-pins').attr('href', '#{root_path page: @pins.next_page}');
+
+- unless @pins.next_page
+  $('.load-more-pins').attr('class', 'load-more-pins ui disabled circular button');
+  $('.load-more-pins').text('No more pins to show');

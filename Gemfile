@@ -17,6 +17,10 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'masonry-rails', '~> 0.2.4'
 gem 'metainspector'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'jquery_block_ui', '~> 0.0.1'
+gem 'will_paginate', '~> 3.1', '>= 3.1.3'
+gem "acts_as_follower", github: "tcocca/acts_as_follower"
 
 group :development, :test do
   gem 'byebug', platform: :mri
