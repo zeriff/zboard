@@ -1,6 +1,5 @@
-#follow{id:"#{user.id}"}
-  - if current_user != user
-    - if user_signed_in? && current_user.following?(user)
-      = link_to "Following", follow_path(user), method: :delete,remote: true,data: {noblock: true}, class: "ui mini blue button"
-    - else
-      = link_to "Follow", follows_path(user), remote: true, class: "ui mini basic blue button",data: {noblock: true}
+- if current_user != user
+  - if user_signed_in? && current_user.following?(user)
+    = link_to "Following", follow_path(user), method: :delete,remote: true,data: {noblock: true}, class: "ui mini blue button"
+  - else
+    = link_to "Follow", follows_path(user), remote: true, class: "ui mini basic blue button",data: {noblock: true}

@@ -1,6 +1,6 @@
 class Pin < ApplicationRecord
   mount_uploader :image, PinImageUploader
-
+  attr_accessor :host
   belongs_to :category, class_name: 'Category'
   belongs_to :board, class_name: 'Board'
   belongs_to :user

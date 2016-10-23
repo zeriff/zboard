@@ -8,27 +8,35 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %div.ui.top.fixed.mini.menu
+    %div.ui.top.fixed.mini.borderless.menu
       %div.ui.container
         %div.item
-          = link_to "Board", root_path, class: "ui circular google plus icon button"
-        %div.right.menu
+          = link_to (image_tag "/logo.png", class: "ui mini image"), root_path
+        .ui.fluid.search.item
+          .ui.icon.input
+            %input.prompt{:placeholder => "Search...", :type => "text", :data => {noblock: true}}/
+            %i.search.link.icon
+          .results
         - if user_signed_in?
-          %div.item
-            = link_to "New", new_pin_path, class: "ui basic green button"
-          %div.item.ui.pointing.dropdown.button
-            = current_user.username
-            %div.menu
-              = link_to "Profile", profile_path(current_user.username), class: "item"
-              = link_to "Find Artists", findfriend_path, class: "item"
-          %div.item
-            = link_to destroy_user_session_path, method: :delete, class: "ui circular google plus icon button" do
-              %i.power.icon
+          %div.right.menu
+            %div.item
+              = link_to new_pin_path, class: "ui labeled icon button" do
+                %i.tag.icon
+                New
+            %div.item.ui.floating.dropdown.button
+              = current_user.username
+              %div.menu
+                = link_to "Profile", profile_path(current_user.username), class: "item"
+                = link_to "Find Artists", findfriend_path, class: "item"
+            %div.item
+              = link_to destroy_user_session_path, method: :delete, class: "ui circular google plus icon button" do
+                %i.power.icon
         - else
-          %div.item
-            = link_to "Sign In", new_user_session_path, class: "ui basic blue button"
-          %div.item
-            = link_to "Sign Up", new_user_registration_path, class: "ui basic grey button"
+          %div.right.menu
+            %div.item
+              = link_to "Sign In", new_user_session_path, class: "ui basic blue button"
+            %div.item
+              = link_to "Sign Up", new_user_registration_path, class: "ui basic grey button"
 
     - flash.each do |type, msg|
       - if type == 'notice'

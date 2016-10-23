@@ -1,0 +1,42 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title Zdevise
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %div.ui.top.fixed.mini.menu
+      %div.ui.container
+        %div.header.item
+          = link_to "Dashboard", superuser_dashboard_path, class: "ui circular google plus icon button"
+        = link_to "Users", manage_users_path, class: "item"
+        = link_to "Pins", manage_pins_path, class: "item"
+        .ui.fluid.search.item
+          .ui.icon.input
+            %input.prompt{:placeholder => "Search...", :type => "text"}/
+            %i.search.link.icon
+          .results
+        #desktop.right.menu
+          %div.item.ui.floating.dropdown
+            = current_user.username
+            %div.menu
+              = link_to "Profile", profile_path(current_user.username), class: "item"
+          %div.item
+            = link_to destroy_user_session_path, method: :delete, class: "ui circular google plus icon button" do
+              %i.power.icon
+    - flash.each do |type, msg|
+      - if type == 'notice'
+        :javascript
+            toastr.info('#{msg}')
+      - if type == 'alert'
+        :javascript
+            toastr.warning('#{msg}')
+      - if type == 'error'
+        :javascript
+            toastr.error('#{msg}')
+    #content
+      %div.ui.container
+        =yield

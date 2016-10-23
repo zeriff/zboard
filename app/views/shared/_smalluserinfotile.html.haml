@@ -1,0 +1,14 @@
+.ui.centered.card
+  .content
+    %img.ui.right.floated.mini.image{src: "#{user.avatar.thumb.url.to_s}"}
+    .header
+      = user.username
+    .meta
+      = user.about
+    .description
+      = user.location
+    .ui.horizontal.divider
+      #follow{id:"#{user.id}"}
+        = render "follows/form", user: user
+    .userstates
+      = render "shared/userstates", user: user

@@ -1,0 +1,40 @@
+%div.ui.button
+  Add user
+
+%table.ui.collapsing.celled.table
+  %thead
+    %tr
+      %th Username
+      %th Gender
+      %th Pins
+      %th Joined on
+      %th Follows
+      %th Followers
+      %th Actions
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          %h4.ui.image.header
+            -# %img.ui.mini.rounded.image{:src => "/images/avatar2/small/lena.png"}/
+            .content
+              = link_to user.username, profile_path(user.username)
+              .sub.header
+                = user.email
+        %td
+          = user.gender
+        %td
+          = user.pins.count
+        %td
+          = user.created_at
+        %td
+          = user.follows.count
+        %td
+          = user.followers.count
+        %td
+          - if !user.is_an_admin?
+            = link_to "Delete account", destroy_user_path(user), data: { confirm: "Are you sure?" }, method: :delete,class: "ui mini button"
+            -# = link_to "Make admin", create_admin_path(user),data: { confirm: "Are you sure?" },class: "ui mini basic red button"
+
+
+= will_paginate @users

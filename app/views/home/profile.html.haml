@@ -1,42 +1,65 @@
-#profile.ui.segment{style: "background-image: url('#{Pin.find(50).image_url}'); background-repeat: no-repeat;  background-size: cover; background-position: top"}
-  %div.ui.mini.orange.right.floated.pointing.dropdown.icon.button
-    %i.setting.icon
-    %div.menu
-      = link_to "Upload Cover", new_board_path, class: "item"
-      = link_to "Edit Profile", edit_user_registration_path, class: "item"
-      = link_to "Add new board", new_board_path, class: "item"
-  .profilecontainer
-    %div.ui.two.column.grid
-      %div.three.wide.column
-        .dp
-          = image_tag @user.avatar_url || "http://res.cloudinary.com/ddjfkqvr7/image/upload/v1476526817/girl-rai_ents_c3z2bt.jpg", class: "ui floated circular image"
-      %div.ten.wide.column
-        %div.ui.mini.vertical.buttons
-          %div.ui.labeled.icon.secondary.button
-            %i.user.icon
-            = @user.username
-          %div.ui.labeled.icon.button
-            %i.mail.icon
-            = @user.email
-          %div.ui.labeled.icon.button
-            %i.location.arrow.icon
-            Mumbai, India
-          = render "follows/form", user: @user
-      -# %div.six.wide.column
-        -# = link_to "Edit Profile", edit_user_registration_path, class: "ui mini right floated teal button"
-        -# = link_to "Add new board", new_board_path, class: "ui mini right floated button"
-%br
-= link_to "Add new board", new_board_path, class: "ui button"
-
+%div.ui.two.column.mobile.reversed.centered.stackable.grid
+  %div.four.wide.column
+    = render "shared/userinfotile", user: @user
+  %div.twelve.wide.column
+    .cover.ui.segment{style: "background-image: url('#{@user.cover_url.to_s}'); background-repeat: no-repeat;  background-size: cover; background-position: top"}
+      - if current_user == @user
+        %div.ui.mini.orange.right.floated.pointing.floating.dropdown.icon.button
+          %i.setting.icon
+          %div.menu
+            = link_to "Edit Profile", edit_user_registration_path, class: "item"
+        #editcover.ui.mini.icon.right.floated.button
+          %i.pencil.icon
 - @boards.each do |board|
-  %h1
-    = board.name
-  %div.ui.divider
-  .pins.transitions-enabled
-    = render board.pins.last(10).reverse
-  %br
-  = link_to "See more", user_board_path(@user.username, board), class: "ui mini basic red right floated button"
+  .ui.raised.segment
+    - if board.user == current_user
+      %div.ui.mini.right.floated.icon.basic.pointing.dropdown.button
+        %i.pencil.icon
+        .menu
+          .item Edit Board Name
+          .item Add item
+          = link_to 'Destroy', board, method: :delete, data: { confirm: 'It will delete all pins in board'+ board.name + '.<br>Are you sure?' }, class: "item ui red basic label"
+    %a.ui.teal.ribbon.label
+      %h3
+        = board.name
+    .pins.transitions-enabled
+      = render board.pins.last(8).reverse
+    - if board.pins.count > 8
+      = link_to "Show more", user_board_path(@user.username, board), class: "ui mini basic blue right floated button"
+      %br
+  -# %h1
+  -#   = board.name
+  -#   %div.ui.mini.basic.red.button
+  -#     Delete
+  -# %div.ui.divider
+  -# .pins.transitions-enabled
+  -#   = render board.pins.last(10).reverse
+  -# %br
+  -# = link_to "See more", user_board_path(@user.username, board), class: "ui mini basic blue right floated button"
+
 
 %br
 %div.ui.horizontal.divider
   = link_to "Show all", user_pins_path(@user.username), class: "ui button"
+
+- if current_user == @user
+  .ui.small.coverpic.modal
+    .header
+      Edit Cover Picture
+    .image.content
+      .ui.medium.image
+        %img{:src => "#{@user.cover}", :id => "img_cover_prev"}/
+      .description
+        %br
+        .ui.header Please upload image file
+        = simple_form_for(@user, as: :user, url: registration_path(@user), html: { method: :put }) do |f|
+          -# %div.field
+          -#   %label.ui.icon.button{:for => "user_cover"}
+          -#     %i.file.icon
+          -#     Attach Image
+          -#   %input#user_cover{:style => "display:none", :type => "file", :name => "user[cover]"}/
+          = f.input :cover, class:"ui button", label: false
+          = f.button :submit, value: "Save", class: "ui basic disabled button", id: "co_submit"
+    .actions
+      .ui.black.deny.button
+        Cancel

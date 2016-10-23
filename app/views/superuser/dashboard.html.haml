@@ -1,0 +1,38 @@
+%div.ui.two.column.centered.stackable.grid
+  %div.fourteen.wide.column
+    %div.ui.statistics
+      .statistic
+        .value
+          = @users.count
+        .label
+          Users
+        .ui.divider
+        = link_to "Manage Uses", manage_users_path, class: "ui button"
+      .statistic
+        .value
+          = @pins.count
+        .label
+          Pins
+        .ui.divider
+        = link_to "Manage Pins", manage_pins_path, class: "ui button"
+
+      .statistic
+        .value
+          = Category.all.count
+        .label
+          Categories
+        .ui.divider
+        = link_to "Manage categories", manage_categories_path, class: "ui button"
+      .statistic
+        .value
+          = Board.all.count
+        .label
+          Boards
+        .ui.divider
+        %div.ui.right.floated.button
+          Manage Boards
+
+%br
+%br
+.ui.divider
+= link_to "Manage currupt",manage_currupt_path, class: "ui button"

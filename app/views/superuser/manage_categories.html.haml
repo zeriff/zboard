@@ -1,0 +1,16 @@
+= link_to "Add Category", new_category_path, class: "ui button"
+
+%table.ui.collapsing.celled.table
+  %thead
+    %tr
+      %th Name
+      %th Actions
+  %tbody
+    - @categories.each do |c|
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              = link_to c.name, c
+        %td
+          = link_to 'Delete', c, method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini red button"

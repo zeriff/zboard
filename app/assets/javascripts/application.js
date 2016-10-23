@@ -37,6 +37,7 @@ $.rails.confirmed = function(link) {
 $.rails.showConfirmationDialog = function(link) {
     var message;
     message = link.data('confirm');
+
     swal({title: message, type: 'warning', confirmButtonText: 'Sure', confirmButtonColor: '#2acbb3', showCancelButton: true}).then(function(e) {
         if (e) {
             $.rails.confirmed(link);

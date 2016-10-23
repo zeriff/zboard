@@ -2,9 +2,6 @@
 // They will automatically be included in application.css.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.centertext{
-  text-align: center;
-}
 
 .userinfo{
   margin-top: 50px;
@@ -13,34 +10,41 @@
 .profilecontainer{
 
 }
-
-#profile{
-    height: 400px;
+.cover{
+    height: 430px;
 }
 
-// .dp{
-//   margin-top: 220px;
-// }
-.ui.floated.circular.image{
-  width: 220px;
+.ui.mini.statistics{
+  font-size: 8.9px;
+  margin: auto;
 }
-//
-.ui.mini.vertical.buttons{
-  margin-top: 10px;
+b.username{
+  font-size: 20px;
+  font-weight: lighter;
 }
-@media only screen and (max-width: 500px) {
-  .ui.segment{
-      margin-bottom: 100px;
+.small .dp
+{
+  height: 220px;
+}
+.dp{
+  height: 250px;
+}
+ @media only screen and (max-width: 500px) {
+  .dp.ui.centered.fluid.image
+  {
+    width: 120px;
   }
-  .ui.mini.vertical.buttons{
-    margin-left: 120px;
-    margin-top: 330px
+  .profile{
+      height: 320px;
   }
-  // .ui.floated.circular.image{
-  //   width: 180px;
-  // }
   .dp{
-    width: 160px;
-    margin-top: 300px;
+    height: 120px;
+    width: 120px;
   }
+  .cover{
+      height: 200px;
+  }
+  .mavatar.ui.avatar.right.floated.image{
+		display: none;
+	}
 }

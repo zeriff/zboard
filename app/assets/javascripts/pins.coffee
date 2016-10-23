@@ -1,4 +1,7 @@
 $ ->
+
+    $('.ui.embed').embed()
+
     $('#pins').imagesLoaded ->
       $('#pins').masonry
         itemSelector: '.box'
@@ -18,8 +21,9 @@ $ ->
       $('#pinurlbutton').show()
       $('#owndiv').fadeIn()
 
+
     $('.dropdown').dropdown
-      transition: 'vertical flip'
+      transition: 'fade up'
 
         #Global binding for link_to tag ajax
     $('a[data-remote]').bind('ajax:success', (evt, data, status, xhr) ->

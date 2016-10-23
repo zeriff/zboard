@@ -1,0 +1,27 @@
+= link_to "Add pin", new_pin_path, class: "ui button"
+
+%table.ui.collapsing.celled.table
+  %thead
+    %tr
+      %th Title
+      %th User
+      %th Actions
+  %tbody
+    - @pins.each do |pin|
+      %tr
+        %td
+          %h4.ui.image.header
+            = image_tag pin.image.thumb.url, class: "ui mini rounded image"
+            .content
+              = link_to pin.title, pin
+        %td
+          = link_to pin.user.username, profile_path(pin.user.username)
+        %td
+          = link_to 'Delete', pin, method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini red button"
+
+.ui.horizontal.divider
+  = will_paginate @pins
+
+%br
+%br
+%br

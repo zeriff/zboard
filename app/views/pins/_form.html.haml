@@ -1,26 +1,60 @@
 = simple_form_for @pin, :html => {multipart: true}   do |f|
-  - if @pin.remote_image_url != nil
-    = f.button :submit, value: "Save"
-    = link_to "Cancel", new_pin_path, class: "ui small red button"
-    %div.ui.divider
-    %div.ui.segment
-      %div.ui.horizontal.divider
-        Image
-      = image_tag(@pin.remote_image_url, class: "ui centered large image")
-      = f.input :remote_image_url, as: :hidden
-      %div.ui.horizontal.divider
-        Or
-      = f.input :image, label: false
-  - if @pin.remote_image_url == nil
-    %div.ui.segment
-      = f.input :image
-      %div.ui.horizontal.divider
-        Or
-      = f.input :remote_image_url, label: "Image url"
-  = f.input :category_id, collection: Category.all, label_method: :name, value_method: :id, label: "Category",include_blank: true
-  = f.input :board_id, collection: Board.where(user_id: current_user.id), label_method: :name, value_method: :id, label: "Category",include_blank: true
-  = f.input :title
-  = f.input :pin_url, placeholder: "http://"
-  = f.input :description,:input_html => {:rows => 5}
-  - if @pin.remote_image_url == nil
-    = f.button :submit
+  %div.ui.two.column.centered.stackable.grid
+    %div.six.wide.column
+      - if @pin.remote_image_url != nil
+        = f.button :submit, value: "Save"
+        = link_to "Cancel", new_pin_path, class: "ui small red button"
+        %div.ui.divider
+        %div.ui.segment
+          %div.ui.horizontal.divider
+            Image
+          = image_tag(@pin.remote_image_url, class: "ui centered large image")
+          = f.input :remote_image_url, as: :hidden
+          %div.ui.horizontal.divider
+            Or
+          %div.field
+            %img.ui.small.image#pin_image_img{style: "display: none"}
+            %label.ui.icon.button{:for => "pin_image"}
+              %i.file.icon
+              Attach Image
+            %input#pin_image{:style => "display:none", :type => "file", :name => "pin[image]"}/
+      - if @pin.remote_image_url == nil
+        %div.ui.segment
+          %div.field
+            %img.ui.small.image#pin_image_img{style: "display: none"}
+            %label.ui.icon.button{:for => "pin_image"}
+              %i.file.icon
+              Attach Image
+            %input#pin_image{:style => "display:none", :type => "file", :name => "pin[image]"}/
+          //= f.input :image
+          %div.ui.horizontal.divider
+            Or
+          = f.input :remote_image_url, placeholder: "Image Url", label: false
+    %div.six.wide.column
+      .field
+        .ui.selection.fluid.dropdown
+          %input{type: "hidden" ,name: "pin[category_id]", id: "pin_category_id", value: "#{@pin.category_id}"}
+          %i.dropdown.icon
+          .default.text Category
+          .menu
+            - Category.all.each do |c|
+              .item{"data-value" => c.id} #{c.name}
+      .field.required.pin_board_id
+        .ui.selection.fluid.dropdown
+          %input{type: "hidden" ,name: "pin[board_id]", id: "pin_board_id", value: "#{@pin.board_id}"}
+          %i.dropdown.icon
+          .default.text Board
+          .menu
+            - Board.where(user_id: current_user.id).each do |b|
+              .item{"data-value" => b.id} #{b.name}
+
+      -# = f.input :category_id, collection: Category.all, label_method: :name, value_method: :id, label: "Category",include_blank: true
+      -# = f.input :board_id, collection: Board.where(user_id: current_user.id), label_method: :name, value_method: :id, label: "Category",include_blank: true`
+
+      = f.input :title, label: false, placeholder: "Title"
+      = f.input :pin_url, label: false, placeholder: "Pin url  (http://www.youtube.com/watch?=yu45mfsd..)"
+      = f.input :description,:input_html => {:rows => 3}, label: false, placeholder: "Description"
+      = f.input :oembed_str, as: :hidden
+      = f.input :parent_provider, as: :hidden
+      - if @pin.remote_image_url == nil
+        = f.button :submit

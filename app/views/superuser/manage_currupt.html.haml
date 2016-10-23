@@ -1,0 +1,18 @@
+%table.ui.collapsing.celled.table
+  %thead
+    %tr
+      %th Id
+      %th Followable type
+      %th Follower type
+      %th Action
+  %tbody
+    - @curruptedRows.each do |row|
+      %tr
+        %td
+          = row.id
+        %td
+          = row.followable_type
+        %td
+          = row.follower_type
+        %td
+          = link_to 'Delete', del_currupt_follow_path(row), method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini red button"

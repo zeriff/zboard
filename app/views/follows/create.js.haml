@@ -1,1 +1,2 @@
 $("#follow_#{@user.id}").html('#{j render('follows/form',user:@user)}')
+$(".userstates").html('#{j render('shared/userstates', user:@user)}')

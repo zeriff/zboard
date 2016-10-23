@@ -1,0 +1,80 @@
+.dp.ui.centered.fluid.image
+  .dp.ui.segment{style: "background-image: url('#{user.avatar.thumb.url.to_s}'); background-repeat: no-repeat;  background-size: cover; background-position: top"}
+    - if current_user == user
+      #editavatar.ui.mini.icon.right.floated.button
+        %i.pencil.icon
+.ui.centered.card
+  .content
+    .header
+      = user.username
+    .meta
+      = user.about
+    .description
+      = user.location
+    .ui.horizontal.divider
+      #follow{id:"#{user.id}"}
+        = render "follows/form", user: user
+    .userstates
+      = render "shared/userstates", user: user
+
+-# .ui.horizontal.divider
+-#   = link_to profile_path(user.username), class: "ui basic button" do
+-#     %b.username
+-#       = user.username
+-# %div.ui.tiny.fluid.vertical.buttons
+-#   %div.ui.basic.labeled.icon.button
+-#     %i.user.icon
+-#     = user.about
+-#   - if user.location
+-#     %div.ui.basic.labeled.icon.button
+-#       %i.location.arrow.icon
+-#       = user.location
+-# .ui.horizontal.divider
+-#   = render "follows/form", user: user
+-# .userstates
+-#   = render "shared/userstates", user: user
+
+
+- if current_user == user
+  .ui.small.avatar.modal
+    .header
+      Edit Avatar
+    .image.content
+      .ui.medium.image
+        %img{:src => "#{user.avatar_url}", :id => "img_avatar_prev"}/
+      .description
+        %br
+        .ui.header Please upload image file
+        = simple_form_for(user, as: :user, url: registration_path(user), html: { method: :put }) do |f|
+          = f.input :avatar, class:"ui button", label: false
+          = f.button :submit, value: "Save", class: "ui basic disabled button", id: "av_submit"
+    .actions
+      .ui.black.deny.button
+        Cancel
+  -#   .ui.positive.right.labeled.icon.button
+  -#     Yep, that's me
+  -#     %i.checkmark.icon
+
+
+
+  -# .ui.centered.card
+  -#   .content
+  -#     - if current_user == user
+  -#       #editavatar.ui.mini.icon.right.floated.button
+  -#         %i.pencil.icon
+  -#     %a.header Elyse
+  -#   .image
+  -#     %img{:src => "#{user.avatar.thumb.url.to_s}"}/
+  -#   .content
+  -#     %div.ui.tiny.fluid.vertical.buttons
+  -#       -# = link_to profile_path(user.username), class: "ui labeled icon button" do
+  -#       -#   %i.user.icon
+  -#       -#   %b.username
+  -#       -#     = user.username
+  -#       %div.ui.basic.labeled.icon.button
+  -#         %i.mail.icon
+  -#         = user.email
+  -#       - if user.location
+  -#         %div.ui.basic.labeled.icon.button
+  -#           %i.location.arrow.icon
+  -#           = user.location

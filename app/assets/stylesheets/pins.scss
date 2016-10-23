@@ -11,9 +11,22 @@
 		margin: auto;
 }
 
-.box {
+// .box {
+// 		padding: 5px;
+// 		width: 225.4px;
+// }
+.twelve.wide.column .box
+{
+	padding: 5px;
+	width: 225.4px;
+}
+.box.user {
 		padding: 5px;
 		width: 225.4px;
+}
+.box {
+		padding: 5px;
+		width: 280px;
 }
 
 .editform {
@@ -36,10 +49,10 @@ h2 {
 //	font-weight: normal;;
 }
 
-.description {
-  font-size: 18px;
-	font-weight: normal;;
-}
+// .description {
+//   font-size: 18px;
+// 	font-weight: normal;;
+// }
 
 .pincontent{
 	text-align: center;

@@ -22,18 +22,45 @@ class PinsController < ApplicationController
   # POST /pin/getinfo
   def getinfo
     @pin = Pin.new
-    begin
+    # begin
       @pin.pin_url = params[:pin_url];
       @pin.category_id = params[:category][:category_id]
       @pin.board_id = params[:board][:board_id]
       remotePin = MetaInspector.new(params[:pin_url],download_images: false)
+      @pin.description = remotePin.meta['description']
       @pin.remote_image_url = remotePin.meta['og:image']
       @pin.title = remotePin.best_title
-      @pin.description = remotePin.meta['description']
-    rescue
-      @pin = Pin.new
-      flash[:error] = "Something went wrong please try again"
-    end
+      @pin.host = remotePin.host
+      case remotePin.host
+      when "www.instagram.com"
+        instClient = InstaApi.new
+        instInfo = instClient.fetch(@pin.pin_url)
+        @pin.oembed_str = instInfo["html"]
+        @pin.parent_provider = instInfo["provider_name"]
+        @pin.description = instInfo["title"]
+      when "www.youtube.com"
+        ytClient = YoutubeApi.new
+        ytinfo = ytClient.fetch(@pin.pin_url)
+        @pin.oembed_str = ytinfo["html"]
+        @pin.parent_provider = ytinfo["provider_name"]
+      when "vine.co"
+        vine = VineApi.new
+        vineInfo = vine.fetch(@pin.pin_url)
+        @pin.oembed_str = vineInfo["html"]
+        @pin.title = vineInfo["title"]
+        @pin.parent_provider = vineInfo["provider_name"]
+      when "soundcloud.com"
+        soundcloud = SoundcloudApi.new
+        soundcloudInfo = soundcloud.fetch(@pin.pin_url)
+        @pin.title = soundcloudInfo["title"]
+        @pin.oembed_str = soundcloudInfo["html"]
+        @pin.parent_provider = soundcloudInfo["provider_name"]
+      end
+
+    # rescue
+    #   @pin = Pin.new
+    #   flash[:error] = "Something went wrong please try again"
+    # end
     respond_to do |format|
       format.html { render :new }
       format.json { render json: @pin }
@@ -59,7 +86,6 @@ class PinsController < ApplicationController
   # POST /pins.json
   def create
     @pin = current_user.pins.build(pin_params)
-
     respond_to do |format|
       if @pin.save
         format.html { redirect_to @pin, notice: 'Pin was successfully created.' }
@@ -90,7 +116,7 @@ class PinsController < ApplicationController
   def destroy
     @pin.destroy
     respond_to do |format|
-      format.html { redirect_to pins_url, notice: 'Pin was successfully destroyed.' }
+      format.html { redirect_to profile_path(current_user.username), notice: 'Pin was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -103,6 +129,6 @@ class PinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pin_params
-      params.require(:pin).permit(:title, :description, :category_id, :board_id, :image, :remote_image_url, :pin_url)
+      params.require(:pin).permit(:title, :description, :category_id, :board_id, :image, :remote_image_url, :pin_url, :oembed_str, :parent_provider)
     end
 end

@@ -19,3 +19,17 @@ var board = {
         });
     }
 }
+
+var imagehelper = {
+    previewImage: function(jqueryEl, id) {
+        var input = jqueryEl.currentTarget
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $(id).attr('style', 'display');
+                $(id).attr('src', e.target.result);
+            };
+        }
+        reader.readAsDataURL(input.files[0])
+    }
+}

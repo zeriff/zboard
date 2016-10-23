@@ -1,13 +1,23 @@
-#like
-  - if user_signed_in? && (current_user.liked? likeable)
-    = link_to like_path(likeable), method: :delete, remote: true, :class => 'ui right floated labeled button', data: { noblock: true} do
-      %div.ui.mini.red.button
-        %i.thumbs.up.icon
-      %div.ui.basic.red.left.pointing.label
-        = likeable.get_upvotes.size
-  - else
-    = link_to likes_path(likeable), remote: true, :class => 'ui right floated labeled button', id: "like", data: { noblock: true} do
-      %div.ui.mini.grey.button
-        %i.thumbs.up.icon
-      %div.ui.basic.grey.left.pointing.label
-        = likeable.get_upvotes.size
+-# #like
+-#   - if user_signed_in? && (current_user.liked? likeable)
+-#     = link_to like_path(likeable), method: :delete, remote: true, :class => 'ui right floated labeled button', data: { noblock: true} do
+-#       %div.ui.mini.red.button
+-#         %i.thumbs.up.icon
+-#       %div.ui.basic.red.left.pointing.label
+-#         = likeable.get_upvotes.size
+-#   - else
+-#     = link_to likes_path(likeable), remote: true, :class => 'ui right floated labeled button', id: "like", data: { noblock: true} do
+-#       %div.ui.mini.grey.button
+-#         %i.thumbs.up.icon
+-#       %div.ui.basic.grey.left.pointing.label
+-#         = likeable.get_upvotes.size
+- if user_signed_in? && (current_user.liked? likeable)
+  = link_to like_path(likeable), method: :delete, remote: true, data: { noblock: true} do
+    %i.large.heart.like.red.icon
+  = likeable.get_upvotes.size
+  Likes
+- else
+  = link_to likes_path(likeable), remote: true, data: { noblock: true} do
+    %i.large.heart.outline.like.icon
+  = likeable.get_upvotes.size
+  Likes

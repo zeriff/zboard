@@ -1,19 +1,37 @@
-#session
-  %div.ui.two.column.center.aligned.stackable.grid
-    %div.six.wide.column
-      %h2
-        Edit #{resource_name.to_s.humanize}
-      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-        = f.input :username, placeholder: "Username", required: true, autofocus: true, label: false
-        = f.input :email, placeholder: "Email", required: true, autofocus: true, label: false
-        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-          %p
-            Currently waiting confirmation for: #{resource.unconfirmed_email}
-        = f.input :password, placeholder: "Password", label: false, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
-        = f.input :password_confirmation, placeholder: "Confirm password", label: false,  required: false
-        = f.input :current_password,placeholder: "Current Password", label: false, hint: "we need your current password to confirm your changes", required: true
-        = f.button :submit, "Update"
-      %h3 Cancel my account
-      %p
-        Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-      = link_to "Back", :back
+%div.ui.two.column.center.aligned.stackable.grid
+  %div.six.wide.column
+    %h2
+      Edit #{resource_name.to_s.humanize}
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      -# = f.input :age, collection: 18..60
+      -# = f.input :gender, collection:[["Male", 0], ["Female", 1]], label: false,:default => 1
+      = f.input :username, label: false, placeholder: "Username"
+      = f.input :about, label: false, placeholder: "Tell Us about Your Profession (Dj-Singer-Composer-...)"
+      -# = f.input :insta_handler,label: false, placeholder: "Instagram handler"
+      -# = f.input :youtube_handler,label: false, placeholder: "Youtube handler"
+      -# = f.input :vine_handler,label: false, placeholder: "Vine handler"
+      -# = f.input :soundcloud_handler,label: false, placeholder: "Soundcloud handler"
+      -# = f.input :location,label: false, placeholder: "Location (Paris, France)"
+
+      -# GENDER DROPDOWN HACK FOR SEMANTIC-UI AND RAILS
+      .field.string.optional.user_gender
+        .ui.selection.fluid.dropdown
+          %input{type: "hidden",name: "user[gender]", id: "user_gender", value: "#{resource.gender}"}
+          %i.dropdown.icon
+          .default.text Gender
+          .menu
+            .item{"data-value" => "0"} Male
+            .item{"data-value" => "1"} Female
+      -# LOCATION SEARCH HACK FOR SEMANTIC-UI AND RAILS
+      .field.string.optional.user_location
+        .ui.fluid.location.search
+          .ui.icon.input
+            %input.prompt{placeholder: "Location (Paris, France)", type: "text", name: "user[location]", id: "user_location", data: {noblock: true},value: "#{resource.location}"}
+            %i.search.link.icon
+          .results
+
+      = f.button :submit, "Update"
+    -# %h3 Cancel my account
+    -# %p
+    -#   Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+    -# = link_to "Back", :back

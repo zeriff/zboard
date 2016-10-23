@@ -21,6 +21,8 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'jquery_block_ui', '~> 0.0.1'
 gem 'will_paginate', '~> 3.1', '>= 3.1.3'
 gem "acts_as_follower", github: "tcocca/acts_as_follower"
+gem 'geocoder', '~> 1.4'
+gem 'oembed'  
 
 group :development, :test do
   gem 'byebug', platform: :mri

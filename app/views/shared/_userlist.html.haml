@@ -1,17 +1,16 @@
-%div.ui.two.centered.column.stackable.grid
-  %div.eight.wide.column
-    %div.ui.left.icon.action.input
-      %i.search.icon
-      %input{placeholder: "Search"}
-      %button.ui.button
-        search
-    %div.ui.divider
-    .container
-      %div.ui.massive.middle.aligned.divided.link.list
-        - users.each do |user|
-          %div.item
-            %div.right.floated.content
-              = render 'follows/form', user: user
-            %div.content
-              %img.ui.avatar.image{src: "http://res.cloudinary.com/ddjfkqvr7/image/upload/v1476526817/girl-rai_ents_c3z2bt.jpg"}
-              = link_to user.username
+.pins.transitions-enabled
+  - users.each do |user|
+    .box.user
+      %div.ui.centered.raised.card
+        %div.image
+          = link_to (image_tag user.avatar.thumb.url.to_s, class: "ui image fluid"), profile_path(user.username)
+        %div.content
+          .header
+            = user.username
+          .description
+            = user.about
+          .meta
+            = user.location
+          .ui.horizontal.divider
+            #follow{id:"#{user.id}"}
+              = render "follows/form", user: user

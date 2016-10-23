@@ -17,10 +17,37 @@
     unknown
 %div.ui.segment
   %div.ui.two.column.stackable.grid
+    = link_to @pin.pin_url, target: "_blank", class: "ui left corner label" do
+      %i.clone.icon
     %div.ten.wide.column
-      = link_to (image_tag @pin.image_url.to_s, :class => "ui centered fluid image"), @pin.pin_url, target: "_blank"
+      -# = link_to @pin.pin_url, target: "_blank", class: "ui mini basic icon button" do
+      -#   %i.tv.icon
+      -#   %i.right.arrow.icon
+      - case @pin.parent_provider
+      - when "Instagram"
+        .ui.centered.fluid.image
+          = @pin.oembed_str.html_safe
+      - when "YouTube"
+        -# - if !@pin.oembed_str
+        .ui.embed{"data-id" => "#{@pin.pin_url.split('v=')[1]}", "data-placeholder" => "#{@pin.image_url.to_s}", "data-source" => "youtube"}
+        -# - else
+        -#   .ui.embed
+        -#     = @pin.oembed_str.html_safe
+      - when "Vine"
+        .ui.embed
+          = @pin.oembed_str.html_safe
+      - when "SoundCloud"
+        .ui.embed
+          = @pin.oembed_str.html_safe
+      - when ""
+        -# %iframe{height: 500, width: 500, src: "#{@pin.pin_url}"}
+        = link_to (image_tag @pin.image_url.to_s, :class => "ui centered fluid image"), @pin.pin_url, target: "_blank"
+      -# .ui.embed{"data-icon" => "right circle arrow", "data-placeholder" => "#{@pin.image_url.to_s}", "data-url" => "#{@pin.html}"}
+      -# .ui.embed{"data-id" => "#{@pin.pin_url.split('v=')[1]}", "data-placeholder" => "#{@pin.image_url.to_s}", "data-source" => "youtube"}
+      -# .ui.embed{"data-icon" => "right circle arrow", "data-placeholder" => "#{@pin.image_url.to_s}", "data-url" => "#{@pin.pin_url}"}
       %div.ui.divider
-      = render 'likes/form', likeable: @pin
+      #like{id:"#{@pin.id}"}
+        = render 'likes/form', likeable: @pin
     %div.six.wide.column
       - if user_signed_in? && @pin.user == current_user
         = link_to "Edit", edit_pin_path(@pin), class: "ui mini green button"
@@ -31,3 +58,10 @@
         %div.ui.divider
         %p.description
           = @pin.description
+
+
+.ui.header
+  Suggestions
+.ui.divider
+.pins.transitions-enabled
+  = render Board.find(@pin.board_id).pins.sample(8)
