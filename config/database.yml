@@ -7,7 +7,7 @@
 production:
   adapter: postgresql
   encoding: utf8
-  database: db/production_zboard
+  database: f3_development
   pool: 5
   timeout: 5000
 
@@ -16,14 +16,14 @@ development:
   encoding: unicode
   database: f3_development
   pool: 5
-  username: f3
+  username:
   password:
 
 test:
   cadapter: postgresql
   pool: 5
   timeout: 5000
-  database: db/test.sqlite3
+  database: test/f3_test
 
 
 
