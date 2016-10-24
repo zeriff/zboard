@@ -25,7 +25,7 @@
 //     API: "http://localhost:3000/"
 // }
 var constant = {
-    API: "https://calm-stream-27400.herokuapp.com/users/sign_up"
+    API: "https://calm-stream-27400.herokuapp.com/"
 }
 
 $.rails.allowAction = function(link) {
