@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -24,13 +23,14 @@ gem "acts_as_follower", github: "tcocca/acts_as_follower"
 gem 'geocoder', '~> 1.4'
 gem 'oembed'
 
+
+
 group :production do
   gem 'pg'
 end
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'sqlite3'
 end
 
 group :development do
