@@ -6,7 +6,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
-
+gem 'pg'
 #New Gems
 gem 'devise', '~> 4.2'
 gem 'haml', '~> 4.0', '>= 4.0.7'
@@ -22,12 +22,7 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.3'
 gem "acts_as_follower", github: "tcocca/acts_as_follower"
 gem 'geocoder', '~> 1.4'
 gem 'oembed'
-
-
-
-group :production do
-  gem 'pg'
-end
+gem 'taps'
 
 group :development, :test do
   gem 'byebug', platform: :mri

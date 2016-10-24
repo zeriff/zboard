@@ -12,13 +12,37 @@ production:
   timeout: 5000
 
 development:
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: f3_development
   pool: 5
-  timeout: 5000
-  database: db/development.sqlite3
+  username: f3
+  password:
 
 test:
-  cadapter: sqlite3
+  cadapter: postgresql
   pool: 5
   timeout: 5000
   database: db/test.sqlite3
+
+
+
+
+# production:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: db/production_zboard
+#   pool: 5
+#   timeout: 5000
+#
+# development:
+#   adapter: sqlite3
+#   pool: 5
+#   timeout: 5000
+#   database: db/development.sqlite3
+#
+# test:
+#   cadapter: sqlite3
+#   pool: 5
+#   timeout: 5000
+#   database: db/test.sqlite3
