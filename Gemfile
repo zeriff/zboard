@@ -24,12 +24,17 @@ gem "acts_as_follower", github: "tcocca/acts_as_follower"
 gem 'geocoder', '~> 1.4'
 gem 'oembed'
 
+group :production do
+  gem 'pg'
+end
+
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'sqlite3'
 end
+
 group :development do
   gem 'web-console'
-  gem 'sqlite3'
   gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'better_errors'
