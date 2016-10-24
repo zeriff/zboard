@@ -21,6 +21,13 @@
 //= require jquery.inview
 //= require_tree .
 
+// var constant = {
+//     API: "http://localhost:3000/"
+// }
+var constant = {
+    API: "https://calm-stream-27400.herokuapp.com/users/sign_up"
+}
+
 $.rails.allowAction = function(link) {
     if (link.data("confirm") == undefined) {
         return true;
@@ -72,4 +79,4 @@ $.blockUI.defaults.css = {
     textAlign: 'center',
     backgroundColor: '#fff',
     cursor: 'wait'
-};
+};;

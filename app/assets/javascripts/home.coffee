@@ -22,16 +22,16 @@ $ ->
                 item.title = e.title.substr(0,45) + "..."
                 item.description = e.description.substr(0,60) + "..."
                 item.image = e.image.thumb.url
-                item.url = "//localhost:3000/pins/" + e.id
+                item.url = constant.API + "pins/" + e.id
               else
                 item.title = e.username
                 item.description = e.about
                 item.image = e.avatar.url
-                item.url = "//localhost:3000/" + e.username
+                item.url = constant.API + e.username
               res.items.push(item)
 
           return res
-        url: '//localhost:3000/search/{query}'
+        url: constant.API + "search/{query}"
 
     #For showing Edit profile Picture Modal
     $('#editavatar').bind 'click', ->
@@ -74,7 +74,7 @@ $ ->
               # item.description = e.state + e.country
               res.items.push(item)
           return res
-        url: '//localhost:3000/searchlocations/{query}'
+        url: constant.API + '/searchlocations/{query}'
 
 
 
