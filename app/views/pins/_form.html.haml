@@ -2,9 +2,6 @@
   %div.ui.two.column.centered.stackable.grid
     %div.six.wide.column
       - if @pin.remote_image_url != nil
-        = f.button :submit, value: "Save"
-        = link_to "Cancel", new_pin_path, class: "ui small red button"
-        %div.ui.divider
         %div.ui.segment
           %div.ui.horizontal.divider
             Image
@@ -56,5 +53,10 @@
       = f.input :description,:input_html => {:rows => 3}, label: false, placeholder: "Description"
       = f.input :oembed_str, as: :hidden
       = f.input :parent_provider, as: :hidden
+      - if @pin.remote_image_url != nil
+        = f.button :submit, value: "Save"
+        = link_to "Cancel", new_pin_path, class: "ui small red button"
       - if @pin.remote_image_url == nil
         = f.button :submit
+        #cancelpinurl.ui.red.button
+          Cancel

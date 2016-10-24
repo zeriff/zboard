@@ -17,15 +17,19 @@ class PinsController < ApplicationController
   # GET /pins/new
   def new
     @pin = Pin.new
+    @formToshow = "newform"
+    @formTohide = "pinform"
   end
 
   # POST /pin/getinfo
   def getinfo
     @pin = Pin.new
+    @formToshow = "pinform"
+    @formTohide = "newform"
     # begin
       @pin.pin_url = params[:pin_url];
-      @pin.category_id = params[:category][:category_id]
-      @pin.board_id = params[:board][:board_id]
+      @pin.category_id = params[:category_id]
+      @pin.board_id = params[:board_id]
       remotePin = MetaInspector.new(params[:pin_url],download_images: false)
       @pin.description = remotePin.meta['description']
       @pin.remote_image_url = remotePin.meta['og:image']

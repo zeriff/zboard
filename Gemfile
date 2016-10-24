@@ -22,7 +22,9 @@ gem 'jquery_block_ui', '~> 0.0.1'
 gem 'will_paginate', '~> 3.1', '>= 3.1.3'
 gem "acts_as_follower", github: "tcocca/acts_as_follower"
 gem 'geocoder', '~> 1.4'
-gem 'oembed'  
+gem 'oembed'
+
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug', platform: :mri

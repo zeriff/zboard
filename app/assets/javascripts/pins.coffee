@@ -10,14 +10,14 @@ $ ->
     $('#pinurlbutton').bind 'click', ->
       # board.showForm()
       $('.pinform').fadeIn()
-      $('#newform').hide()
+      $('.newform').hide()
       $('#pinurlbutton').hide()
       $('#owndiv').hide()
 
 
     $('#cancelpinurl').bind 'click', ->
       $('.pinform').hide()
-      $('#newform').fadeIn()
+      $('.newform').fadeIn()
       $('#pinurlbutton').show()
       $('#owndiv').fadeIn()
 

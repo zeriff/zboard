@@ -47,6 +47,7 @@ class HomeController < ApplicationController
   end
 
   def pins
-    @pins = current_user.pins.order("created_at desc")
+    @user = User.find_by(username: params[:username])
+    @pins = @user.pins.order("created_at desc")
   end
 end

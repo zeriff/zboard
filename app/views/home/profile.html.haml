@@ -16,8 +16,7 @@
       %div.ui.mini.right.floated.icon.basic.pointing.dropdown.button
         %i.pencil.icon
         .menu
-          .item Edit Board Name
-          .item Add item
+          = link_to "Edit Board Name", edit_board_path(board), class: "item"
           = link_to 'Destroy', board, method: :delete, data: { confirm: 'It will delete all pins in board'+ board.name + '.<br>Are you sure?' }, class: "item ui red basic label"
     %a.ui.teal.ribbon.label
       %h3
@@ -36,11 +35,12 @@
   -#   = render board.pins.last(10).reverse
   -# %br
   -# = link_to "See more", user_board_path(@user.username, board), class: "ui mini basic blue right floated button"
-
-
+= link_to "Add New Board", new_board_path, class: "ui right floated button"
 %br
-%div.ui.horizontal.divider
-  = link_to "Show all", user_pins_path(@user.username), class: "ui button"
+%br
+%br
+-# %div.ui.horizontal.divider
+-#   = link_to "Show all", user_pins_path(@user.username), class: "ui button"
 
 - if current_user == @user
   .ui.small.coverpic.modal

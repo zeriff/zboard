@@ -1,41 +1,46 @@
-%div.nine.wide.column
-  %h1 New pin
-
-  .pinform.ui.segment
-    = form_tag pininfo_path, method: "post", class: "ui reply form" do
-      .field
-        = text_field_tag :pin_url, @pin.pin_url, placeholder:"Paste your url http://"
-      .field
-        .ui.selection.fluid.dropdown
-          %input{type: "hidden" ,name: "pin[category_id]", id: "pin_category_id", value: "#{@pin.category_id}"}
-          %i.dropdown.icon
-          .default.text Category
-          .menu
-            - Category.all.each do |c|
-              .item{"data-value" => c.id} #{c.name}
-
-      %div.ui.two.column.grid
-        %div.column
-          .field.required.pin_board_id
+.ui.horizontal.divider
+  New pin
+.ui.two.column.centered.stackable.grid
+  .ten.wide.column
+    %div{class: "#{@formToshow}"}
+      .ui.segment
+        = form_tag pininfo_path, method: "post", class: "ui reply form" do
+          .field
+            = text_field_tag :pin_url, @pin.pin_url, placeholder:"Paste your url http://"
+          .field
             .ui.selection.fluid.dropdown
-              %input{type: "hidden" ,name: "pin[board_id]", id: "pin_board_id", value: "#{@pin.board_id}"}
+              %input{type: "hidden" ,name: "category_id", id: "category_id", value: "#{@pin.category_id}"}
               %i.dropdown.icon
-              .default.text Board
+              .default.text Category
               .menu
-                - Board.where(user_id: current_user.id).each do |b|
-                  .item{"data-value" => b.id} #{b.name}
-        %div.column
-          = link_to "Or Add New Board", new_board_path, class:"ui green button"
+                - Category.all.each do |c|
+                  .item{"data-value" => c.id} #{c.name}
+          %div.ui.two.column.grid
+            %div.column
+              .field.required.board_id
+                .ui.selection.fluid.dropdown
+                  %input{type: "hidden" ,name: "board_id", id: "board_id", value: "#{@pin.board_id}"}
+                  %i.dropdown.icon
+                  .default.text Board
+                  .menu
+                    - Board.where(user_id: current_user.id).each do |b|
+                      .item{"data-value" => b.id} #{b.name}
+            %div.column
+              = link_to "Or Add New Board", new_board_path, class:"ui basic button"
+          %div.ui.divider
+          = submit_tag "Go", class: 'ui teal button'
+          -# %br
+          -# %br
 
-      %div.ui.divider
-      = submit_tag "Go", class: 'ui mini blue button'
-      #cancelpinurl.ui.mini.red.button
-        Cancel
-  - if @pin.remote_image_url == nil
-    #pinurlbutton.ui.red.basic.button
-      Pin Url
-    #owndiv.ui.horizontal.divider
-      Or Create your own
-  #newform
-    %br
-    = render 'form', pin: @pin
+      .ui.horizontal.divider
+        #pinurlbutton.ui.red.basic.button
+          Or Create your own
+-# .ui.two.column.centered.grid
+-#   .ten.wide.column
+-#     - if @pin.remote_image_url == nil
+-#       #pinurlbutton.ui.red.basic.button
+-#         Pin Url
+-#       #owndiv.ui.horizontal.divider
+-#         Or Create your own
+%div{class: "#{@formTohide}"}
+  = render 'form', pin: @pin

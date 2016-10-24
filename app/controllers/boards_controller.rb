@@ -4,7 +4,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all
+    # @boards = Board.all
   end
 
   # GET /boards/1
@@ -42,8 +42,7 @@ class BoardsController < ApplicationController
   def update
     respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to @board, notice: 'Board was successfully updated.' }
-        format.json { render :show, status: :ok, location: @board }
+        format.html { redirect_to profile_path(current_user.username), notice: 'Board was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @board.errors, status: :unprocessable_entity }

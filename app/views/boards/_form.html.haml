@@ -1,3 +1,6 @@
-= simple_form_for(@board) do |f|
-  = f.input :name
-  = f.button :submit
+%div.ui.two.column.centered.stackable.grid
+  %div.nine.wide.column
+    .ui.segment
+      = simple_form_for(@board) do |f|
+        = f.input :name, label: false, placeholder: "Enter the Board name"
+        = f.button :submit
