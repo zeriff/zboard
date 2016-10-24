@@ -7,23 +7,23 @@
 production:
   adapter: postgresql
   encoding: utf8
-  database: f3_development
+  database: db/production_psql
   pool: 5
   timeout: 5000
 
 development:
   adapter: postgresql
   encoding: unicode
-  database: f3_development
+  database: db/development_psql
   pool: 5
   username:
   password:
 
 test:
-  cadapter: postgresql
+  adapter: postgresql
   pool: 5
   timeout: 5000
-  database: test/f3_test
+  database: test/development_psql
 
 
 
