@@ -23,6 +23,7 @@ gem "acts_as_follower", github: "tcocca/acts_as_follower"
 gem 'geocoder', '~> 1.4'
 gem 'oembed'
 gem 'taps'
+gem "fog-aws"
 
 group :development, :test do
   gem 'byebug', platform: :mri
