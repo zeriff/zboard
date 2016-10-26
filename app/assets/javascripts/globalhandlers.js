@@ -6,3 +6,14 @@ $(document).ajaxStart(function(domevent) {
 }).ajaxStop(function() {
     $.unblockUI();
 });
+
+$(document).ready(function() {
+    // $.blockUI({message: '<div class="ui active dimmer"><div class="ui loader"></div></div>'});
+    $('form').submit(function() {
+        $.blockUI({message: '<div class="ui active dimmer"><div class="ui loader"></div></div>'});
+    })
+});
+
+jQuery(window).load(function() {
+    $.unblockUI();
+});

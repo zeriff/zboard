@@ -22,13 +22,12 @@ class HomeController < ApplicationController
     @users = User.all_except(current_user).paginate(:page => params[:page])
   end
 
-
   def followers
-    @users = User.find_by(username: params[:username]).user_followers
+    @users = User.find_by(username: params[:username]).followers
   end
 
   def follows
-    @follows = User.find_by(username: params[:username]).follows
+    @follows = User.find_by(username: params[:username]).follows.includes(:followable)
     @users = [];
     @follows.each do |f|
       @users.push(f.followable)
