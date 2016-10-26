@@ -1,6 +1,6 @@
 $ ->
 
-    $('.ui.embed').embed()
+    # $('.ui.embed').embed()
 
     $('#pins').imagesLoaded ->
       $('#pins').masonry

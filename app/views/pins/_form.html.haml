@@ -58,5 +58,8 @@
         = link_to "Cancel", new_pin_path, class: "ui small red button"
       - if @pin.remote_image_url == nil
         = f.button :submit
-        #cancelpinurl.ui.red.button
-          Cancel
+        - if @pin.persisted?
+          = link_to "Cancel", :back, class: "ui red button"
+        - else
+          #cancelpinurl.ui.red.button
+            Cancel
