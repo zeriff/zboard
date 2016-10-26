@@ -24,11 +24,15 @@ class HomeController < ApplicationController
 
 
   def followers
-    @users = User.find_by(username: params[:username]).followers
+    @users = User.find_by(username: params[:username]).user_followers
   end
 
   def follows
-    @users = User.find_by(username: params[:username]).follows
+    @follows = User.find_by(username: params[:username]).follows
+    @users = [];
+    @follows.each do |f|
+      @users.push(f.followable)
+    end
   end
 
   def profile

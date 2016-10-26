@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   get '/:username', to: "home#profile", as: :profile
   get ':username/board/:board_id', to: "home#board", as: :user_board
   get '/:username/pins', to: "home#pins", as: :user_pins
-  get ':username/followers', to: "home#followers", as: :follow_list
-  get ':username/follows', to: "home#follows", as: :follower_list
+  get ':username/followers', to: "home#followers", as: :follower_list
+  get ':username/follows', to: "home#follows", as: :follow_list
 
   post 'pin/getinfo', to: 'pins#getinfo', as: "pininfo"
   get 'pins/category/:category_id', to: 'pins#getbycategory', as: "categorize"
