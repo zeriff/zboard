@@ -45,7 +45,14 @@ $.rails.showConfirmationDialog = function(link) {
     var message;
     message = link.data('confirm');
 
-    swal({title: message, type: 'warning', confirmButtonText: 'Sure', confirmButtonColor: '#2acbb3', showCancelButton: true}).then(function(e) {
+    swal({
+        title: "Are You sure?",
+        text: message,
+        type: 'warning',
+        confirmButtonText: 'Sure',
+        confirmButtonColor: '#2acbb3',
+        showCancelButton: true
+    }).then(function(e) {
         if (e) {
             $.rails.confirmed(link);
         }
@@ -79,4 +86,4 @@ $.blockUI.defaults.css = {
     textAlign: 'center',
     backgroundColor: '#fff',
     cursor: 'wait'
-};;
+};
