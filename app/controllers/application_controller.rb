@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # include CanCan::ControllerAdditions
   protect_from_forgery with: :exception
   layout :layout_by_resource
   before_filter :configure_permitted_parameters, if: :devise_controller?
@@ -10,12 +11,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "You are not authorized to perform this function..!"
+    redirect_to :back
+  end
+
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :gender, :location])
     devise_parameter_sanitizer.permit(:account_update, keys: [:cover, :gender, :avatar, :about, :insta_handler, :youtube_handler, :vine_handler, :soundcloud_handler, :location])
   end
-
   def layout_by_resource
     if devise_controller?
       "session"
@@ -27,4 +32,5 @@ class ApplicationController < ActionController::Base
         end
     end
   end
+
 end

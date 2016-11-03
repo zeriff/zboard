@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
 
-
   resources :boards
-  get 'follows/create'
-
-  get 'follows/destroy'
-
   resources :categories
   resources :pins
+
   devise_for :users, controllers: {registrations: 'registrations'}
 
   root to: 'home#index'

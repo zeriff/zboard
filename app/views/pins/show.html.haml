@@ -46,8 +46,9 @@
       #like{id:"#{@pin.id}"}
         = render 'likes/form', likeable: @pin
     %div.six.wide.column
-      - if user_signed_in? && @pin.user == current_user
+      - if can? :update, @pin
         = link_to "Edit", edit_pin_path(@pin), class: "ui mini green button"
+      - if can? :destroy, @pin
         = link_to 'Delete', @pin, method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini red button"
       %div.pincontent
         %h2.ui.header

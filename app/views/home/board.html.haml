@@ -8,11 +8,6 @@
         Collection
       %br
       %br
-      -# - @board.user.boards.each do |b|
-      -#   = link_to user_board_path(b.user.username,b.id), class: "ui label" do
-      -#     = b.name
-      -#     %div.detail
-      -#       = b.pins.count
       %div.ui.small.statistics
         - @board.user.boards.each do |b|
           .statistic
@@ -31,30 +26,3 @@
 - else
   %div.ui.disabled.circular.button
     No pins to show
-
-
--# %div.ui.two.column.centered.stackable.grid
--#   %div.four.wide.column
--#     = render "shared/userinfotile", user: @user
--#   %div.twelve.wide.column
--#     %div.ui.horizontal.divider
--#       collection
--#     %div.ui.fluid.statistics
--#       - @board.user.boards.each do |b|
--#         .statistic
--#           .value
--#             = link_to b.pins.count, user_board_path(b.user.username,b.id)
--#             -# = b.pins.count
--#           .ui.divider
--#           .label
--#             = link_to b.name, user_board_path(b.user.username,b.id), class: "ui button"
--#     %b
--#     .ui.horizontal.divider
--#       %h1
--#         = @board.name
--#     - if @pins.count > 0
--#       .pins.transitions-enabled
--#         = render @pins
--#     - else
--#       %div.ui.disabled.circular.button
--#         No pins to show

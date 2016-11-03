@@ -1,4 +1,5 @@
 class PinsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :getbycategory]
   respond_to :js
@@ -104,6 +105,7 @@ class PinsController < ApplicationController
   # PATCH/PUT /pins/1
   # PATCH/PUT /pins/1.json
   def update
+    # ! @pin, :update
     respond_to do |format|
       if @pin.update(pin_params)
         format.html { redirect_to @pin, notice: 'Pin was successfully updated.' }

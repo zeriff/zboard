@@ -57,6 +57,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
     byebug (9.0.6)
+    cancancan (1.15.0)
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -273,6 +274,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   byebug
+  cancancan (~> 1.10)
   carrierwave (~> 0.11.2)
   coffee-rails (~> 4.2)
   devise (~> 4.2)

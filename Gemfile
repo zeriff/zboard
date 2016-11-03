@@ -24,6 +24,7 @@ gem 'geocoder', '~> 1.4'
 gem 'oembed'
 gem 'taps'
 gem "fog-aws"
+gem 'cancancan', '~> 1.10'
 
 group :development, :test do
   gem 'byebug', platform: :mri

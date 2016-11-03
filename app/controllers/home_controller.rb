@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   # ROOT PATH
   def index
+
     if user_signed_in? && current_user.is_an_admin?
       redirect_to :superuser_dashboard
     else
@@ -16,6 +17,7 @@ class HomeController < ApplicationController
         @pins = Pin.paginate(:page => params[:page]).order("created_at desc")
       end
     end
+
   end
 
   def findfriend
@@ -27,8 +29,8 @@ class HomeController < ApplicationController
   end
 
   def follows
-    @follows = User.find_by(username: params[:username]).follows.includes(:followable)
-    @users = [];
+    @follows = User.find_by(username: params[:username]).follows
+    @users = []
     @follows.each do |f|
       @users.push(f.followable)
     end
