@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :professions
   resources :boards
   resources :categories
   resources :pins

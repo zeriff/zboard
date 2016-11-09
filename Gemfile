@@ -25,6 +25,7 @@ gem 'oembed'
 gem 'taps'
 gem "fog-aws"
 gem 'cancancan', '~> 1.10'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # include CanCan::ControllerAdditions
   protect_from_forgery with: :exception
   layout :layout_by_resource
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def authenticate_admin
     if !current_user.is_an_admin?
@@ -19,7 +19,17 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :gender, :location])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:cover, :gender, :avatar, :about, :insta_handler, :youtube_handler, :vine_handler, :soundcloud_handler, :location])
+    devise_parameter_sanitizer
+        .permit(:account_update,
+                keys: [
+                        :profession_list,
+                        :intrest_list,
+                        :cover,
+                        :avatar,
+                        :about,
+                        :location
+                      ]
+                )
   end
   def layout_by_resource
     if devise_controller?

@@ -25,7 +25,7 @@ $ ->
                 item.url = constant.API + "pins/" + e.id
               else
                 item.title = e.username
-                item.description = e.about
+                # item.description = e.about
                 item.image = e.avatar.url
                 item.url = constant.API + e.username
               res.items.push(item)

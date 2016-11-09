@@ -8,7 +8,7 @@
     .header
       = user.username
     .meta
-      = user.about
+      = user.profession_list.reverse.join("-")
     .description
       = user.location
     .ui.horizontal.divider

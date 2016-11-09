@@ -10,15 +10,21 @@
           %div.ui.horizontal.divider
             Or
           %div.field
-            %img.ui.small.image#pin_image_img{style: "display: none"}
+            %img.ui.fluid.centered.image#pin_image_img{style: "display: none"}
             %label.ui.icon.button{:for => "pin_image"}
               %i.file.icon
               Attach Image
             %input#pin_image{:style => "display:none", :type => "file", :name => "pin[image]"}/
+
       - if @pin.remote_image_url == nil
         %div.ui.segment
           %div.field
-            %img.ui.small.image#pin_image_img{style: "display: none"}
+            - if @pin.image_url != nil
+              %img.ui.centered.image#pin_image_img{src: "#{@pin.image}"}
+            - else
+              %img.ui.centered.image#pin_image_img{style: "display: none"}
+
+            -# %img.ui.small.image#pin_image_img{style: "display: none"}
             %label.ui.icon.button{:for => "pin_image"}
               %i.file.icon
               Attach Image
@@ -28,14 +34,22 @@
             Or
           = f.input :remote_image_url, placeholder: "Image Url", label: false
     %div.six.wide.column
-      .field
-        .ui.selection.fluid.dropdown
-          %input{type: "hidden" ,name: "pin[category_id]", id: "pin_category_id", value: "#{@pin.category_id}"}
+      .field.string.optional.profession_list
+        .ui.ui.fluid.multiple.search.selection.dropdown
+          %input{type: "hidden",name: "pin[genre_list]", id: "pin_genre_list", value: "#{pin.genre_list.join(",")}"}
           %i.dropdown.icon
           .default.text Category
           .menu
             - Category.all.each do |c|
-              .item{"data-value" => c.id} #{c.name}
+              .item{"data-value" => c.name} #{c.name}
+      -# .field
+      -#   .ui.selection.fluid.dropdown
+      -#     %input{type: "hidden" ,name: "pin[category_id]", id: "pin_category_id", value: "#{@pin.category_id}"}
+      -#     %i.dropdown.icon
+      -#     .default.text Category
+      -#     .menu
+      -#       - Category.all.each do |c|
+      -#         .item{"data-value" => c.id} #{c.name}
       .field.required.pin_board_id
         .ui.selection.fluid.dropdown
           %input{type: "hidden" ,name: "pin[board_id]", id: "pin_board_id", value: "#{@pin.board_id}"}

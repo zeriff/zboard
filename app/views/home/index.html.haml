@@ -1,11 +1,11 @@
-%div.ui.mini.floating.labeled.icon.scrolling.dropdown.button
-  %i.filter.icon
-  %span.text
-    Category
-  %div.menu
-    = link_to "All", root_path, class: 'item'
-    - Category.all.each do |c|
-      = link_to c.name, categorize_path(c.id),remote: true, class: 'item'
+-# %div.ui.mini.floating.labeled.icon.scrolling.dropdown.button
+-#   %i.filter.icon
+-#   %span.text
+-#     Category
+-#   %div.menu
+-#     = link_to "All", root_path, class: 'item'
+-#     - Category.all.each do |c|
+-#       = link_to c.name, categorize_path(c.id),remote: true, class: 'item'
 #pins.transitions-enabled.infinite-scroll
   = render @pins
 %div.ui.two.column.center.aligned.stackable.grid

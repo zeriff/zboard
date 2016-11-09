@@ -6,7 +6,7 @@
       -# = f.input :age, collection: 18..60
       -# = f.input :gender, collection:[["Male", 0], ["Female", 1]], label: false,:default => 1
       = f.input :username, label: false, placeholder: "Username"
-      = f.input :about, label: false, placeholder: "Tell Us about Your Profession (Dj-Singer-Composer-...)"
+      = f.input :about, :input_html => {:rows => 3}, label: false, placeholder: "Tell Us about Your Profession (Dj-Singer-Composer-...)"
       -# = f.input :insta_handler,label: false, placeholder: "Instagram handler"
       -# = f.input :youtube_handler,label: false, placeholder: "Youtube handler"
       -# = f.input :vine_handler,label: false, placeholder: "Vine handler"
@@ -29,6 +29,25 @@
             %input.prompt{placeholder: "Location (Paris, France)", type: "text", name: "user[location]", id: "user_location", data: {noblock: true},value: "#{resource.location}"}
             %i.search.link.icon
           .results
+
+      .field.string.optional.profession_list
+        .ui.ui.fluid.multiple.search.selection.dropdown
+          %input{type: "hidden",name: "user[profession_list]", id: "user_profession_list", value: "#{resource.profession_list.join(",")}"}
+          %i.dropdown.icon
+          .default.text Profession
+          .menu
+            - Profession.all.each do |c|
+              .item{"data-value" => c.name} #{c.name}
+
+      .field.string.optional.profession_list
+        .ui.ui.fluid.multiple.search.selection.dropdown
+          %input{type: "hidden",name: "user[intrest_list]", id: "user_intrest_list", value: "#{resource.intrest_list.join(",")}"}
+          %i.dropdown.icon
+          .default.text Intrest
+          .menu
+            - Category.all.each do |c|
+              .item{"data-value" => c.name} #{c.name}
+
 
       = f.button :submit, "Update"
     -# %h3 Cancel my account

@@ -5,7 +5,6 @@ class SearchController < ApplicationController
     users = User.where('username LIKE ?', "%#{params[:query]}%")
     a = pins + users
     res = SearchResponse.new(a, users)
-
     respond_to do |format|
       format.json  { render json: res }
     end

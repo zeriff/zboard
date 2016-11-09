@@ -130,11 +130,22 @@ class PinsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pin
-      @pin = Pin.find(params[:id])
+      @pin = Pin.includes(:user).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pin_params
-      params.require(:pin).permit(:title, :description, :category_id, :board_id, :image, :remote_image_url, :pin_url, :oembed_str, :parent_provider)
+      params.require(:pin)
+          .permit(
+                  :genre_list,
+                  :title,
+                  :description,
+                  :board_id,
+                  :image,
+                  :remote_image_url,
+                  :pin_url,
+                  :oembed_str,
+                  :parent_provider
+                )
     end
 end

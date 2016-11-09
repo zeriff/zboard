@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   acts_as_voter
 
+  acts_as_taggable # Alias for acts_as_taggable_on :tags
+  acts_as_taggable_on :profession, :intrest
+  
 
   # validates :username, presence: true
   # validates :gender, presence: true

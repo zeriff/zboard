@@ -7,14 +7,14 @@
         = form_tag pininfo_path, method: "post", class: "ui reply form" do
           .field
             = text_field_tag :pin_url, @pin.pin_url, placeholder:"Paste your url http://"
-          .field
-            .ui.selection.fluid.dropdown
-              %input{type: "hidden" ,name: "category_id", id: "category_id", value: "#{@pin.category_id}"}
-              %i.dropdown.icon
-              .default.text Category
-              .menu
-                - Category.all.each do |c|
-                  .item{"data-value" => c.id} #{c.name}
+          -# .field
+          -#   .ui.selection.fluid.dropdown
+          -#     %input{type: "hidden" ,name: "category_id", id: "category_id", value: "#{@pin.category_id}"}
+          -#     %i.dropdown.icon
+          -#     .default.text Category
+          -#     .menu
+          -#       - Category.all.each do |c|
+          -#         .item{"data-value" => c.id} #{c.name}
           %div.ui.two.column.grid
             %div.column
               .field.required.board_id
@@ -29,18 +29,9 @@
               = link_to "Or Add New Board", new_board_path, class:"ui basic button"
           %div.ui.divider
           = submit_tag "Go", class: 'ui teal button'
-          -# %br
-          -# %br
 
       .ui.horizontal.divider
         #pinurlbutton.ui.red.basic.button
           Or Create your own
--# .ui.two.column.centered.grid
--#   .ten.wide.column
--#     - if @pin.remote_image_url == nil
--#       #pinurlbutton.ui.red.basic.button
--#         Pin Url
--#       #owndiv.ui.horizontal.divider
--#         Or Create your own
 %div{class: "#{@formTohide}"}
   = render 'form', pin: @pin

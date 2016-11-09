@@ -21,12 +21,12 @@
 //= require jquery.inview
 //= require_tree .
 
-// var constant = {
-//     API: "http://localhost:3000/"
-// }
 var constant = {
-    API: "https://calm-stream-27400.herokuapp.com/"
+    API: "http://localhost:3000/"
 }
+// var constant = {
+//     API: "https://calm-stream-27400.herokuapp.com/"
+// }
 
 $.rails.allowAction = function(link) {
     if (link.data("confirm") == undefined) {
@@ -46,7 +46,7 @@ $.rails.showConfirmationDialog = function(link) {
     message = link.data('confirm');
 
     swal({
-        title: "Are You sure?",
+        // title: "Are You sure?",
         text: message,
         type: 'warning',
         confirmButtonText: 'Sure',

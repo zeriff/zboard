@@ -1,12 +1,13 @@
 #session
   %div.ui.two.column.center.aligned.stackable.grid
     %div.six.wide.column
+      -# = image_tag "/logo.png", class: "ui centered tiny image"
       %h2
         Sign up
       %div.ui.segment
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = f.input :username, required: false, autofocus: true, label: false, placeholder: "Username"
-          = f.input :email, required: true, autofocus: true, label: false, placeholder: "Email"
+          = f.input :email, required: true, label: false, placeholder: "Email"
           -# = f.input :gender
           .field
             .ui.selection.fluid.dropdown
