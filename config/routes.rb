@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :professions
   resources :boards
   resources :categories
@@ -8,9 +7,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'registrations'}
 
   root to: 'home#index'
+
   get ":username/follows", to: 'home#follows', as: :user_follows
   get ":username/followers", to: 'home#followers', as: :user_followers
-
+  get ":username/savedpins", to: 'home#savedpins', as: :saved_pins
   get 'findfriend', to: "home#findfriend", as: :findfriend
   get '/:username', to: "home#profile", as: :profile
   get ':username/board/:board_id', to: "home#board", as: :user_board
@@ -24,6 +24,9 @@ Rails.application.routes.draw do
 
   get 'like/:id', to: "likes#create", as: :likes
   delete 'like/:id', to: "likes#destroy", as: :like
+
+  get 'save/:id', to: "save#create", as: :saves
+  delete 'save/:id', to: "save#destroy", as: :save
 
   get 'follow/:id', to: "follows#create", as: :follows
   delete 'follow/:id', to: "follows#destroy", as: :follow

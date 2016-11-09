@@ -54,6 +54,12 @@ class HomeController < ApplicationController
 
   end
 
+  def savedpins
+    @user = User.find_by(username: params[:username])
+    @pins = @user.saves.up.saveables
+
+  end
+
   def board
     @board = Board.find(params[:board_id])
     @user = User.find_by(username: params[:username])

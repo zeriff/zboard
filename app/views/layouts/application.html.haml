@@ -28,6 +28,7 @@
               %div.menu
                 = link_to "Profile", profile_path(current_user.username), class: "item"
                 = link_to "Find Artists", findfriend_path, class: "item"
+                = link_to "Saved Pins", saved_pins_path(current_user.username), class: "item"
             %div.item
               = link_to destroy_user_session_path, method: :delete, class: "ui circular google plus icon button" do
                 %i.power.icon

@@ -5,6 +5,7 @@ class Pin < ApplicationRecord
   belongs_to :user
 
   acts_as_votable
+  acts_as_saveable
 
   acts_as_taggable # Alias for acts_as_taggable_on :tags
   acts_as_taggable_on :genre

@@ -21,7 +21,9 @@
         %a.ui.mini.horizontal.teal.label
           = c
       %div.ui.divider
-      #like{id:"#{@pin.id}"}
+      .save{class: "#{@pin.id}"}
+        = render "save/form", savable: @pin
+      .like{class: "#{@pin.id}"}
         = render 'likes/form', likeable: @pin
     %div.five.wide.column
       - if can? :update, @pin
@@ -39,7 +41,6 @@
         - else
           %a.ui.mini.tag.red.label
             unknown
-
         .ui.header
           = @pin.title
         .ui.description

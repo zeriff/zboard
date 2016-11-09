@@ -12,7 +12,7 @@
       .description
         = pin.title[0..45] + "..."
     .extra.content
-      .ui.mini.right.floated.basic.button
-        Save
-      #like{id:"#{pin.id}"}
+      .save{class: "#{pin.id}"}
+        = render "save/form", savable: pin
+      .like{class:"#{pin.id}"}
         = render "likes/form", likeable: pin

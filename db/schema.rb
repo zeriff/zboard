@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103174817) do
+ActiveRecord::Schema.define(version: 20161109113815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,20 @@ ActiveRecord::Schema.define(version: 20161103174817) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "saves", force: :cascade do |t|
+    t.string   "saveable_type"
+    t.integer  "saveable_id"
+    t.string   "saver_type"
+    t.integer  "saver_id"
+    t.boolean  "save_flag"
+    t.string   "save_scope"
+    t.integer  "save_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["saveable_id", "saveable_type", "save_scope"], name: "index_saves_on_saveable_id_and_saveable_type_and_save_scope", using: :btree
+    t.index ["saver_id", "saver_type", "save_scope"], name: "index_saves_on_saver_id_and_saver_type_and_save_scope", using: :btree
   end
 
   create_table "taggings", force: :cascade do |t|

@@ -26,6 +26,7 @@ gem 'taps'
 gem "fog-aws"
 gem 'cancancan', '~> 1.10'
 gem 'acts-as-taggable-on', '~> 4.0'
+gem 'acts_as_saveable', '~> 0.10.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri
