@@ -56,8 +56,7 @@ class HomeController < ApplicationController
 
   def savedpins
     @user = User.find_by(username: params[:username])
-    @pins = @user.saves.up.saveables
-
+    @pins = @user.saves.up.order("created_at desc").saveables
   end
 
   def board

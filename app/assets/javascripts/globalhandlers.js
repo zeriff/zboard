@@ -1,7 +1,7 @@
 $(document).ajaxStart(function(domevent) {
-    var activeElement = domevent.currentTarget.activeElement;
-    var noblock = activeElement.getAttribute("data-noblock");
-    $(activeElement).find("i").addClass("loading");
+    var activeElement = $(domevent.currentTarget.activeElement);
+    var noblock = activeElement.attr("data-noblock");
+    activeElement.find("i").addClass("loading");
     if (!noblock && noblock != "") {
         $.blockUI({message: '<div class="ui active dimmer"><div class="ui loader"></div></div>'});
     }
@@ -12,7 +12,6 @@ $(document).ajaxStart(function(domevent) {
 });
 
 $(document).ready(function() {
-    // $.blockUI({message: '<div class="ui active dimmer"><div class="ui loader"></div></div>'});
     $('form').submit(function() {
         $.blockUI({message: '<div class="ui active dimmer"><div class="ui loader"></div></div>'});
     })
