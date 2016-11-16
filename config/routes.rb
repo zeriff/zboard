@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :pins
 
+  # get 'api/pins', to: "pins#pins"
   devise_for :users, controllers: {registrations: 'registrations'}
 
   root to: 'home#index'
