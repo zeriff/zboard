@@ -10,6 +10,10 @@ class PinsController < ApplicationController
     @pins = Pin.all.order("created_at desc")
   end
 
+  def allpins
+    @pins = Pin.all.order("created_at desc")
+    render json: @pins
+  end
   # GET /pins/1
   # GET /pins/1.json
   def show
