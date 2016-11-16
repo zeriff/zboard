@@ -1,7 +1,7 @@
 class PinsController < ApplicationController
   load_and_authorize_resource
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :getbycategory]
+  before_action :authenticate_user!, except: [:show, :allpins, :getbycategory]
   respond_to :js
 
   # GET /pins
