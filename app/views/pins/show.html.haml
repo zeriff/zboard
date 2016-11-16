@@ -32,7 +32,7 @@
         = link_to 'Delete', @pin, method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini red button"
         %div.ui.divider
       %h4.ui.header
-        %img.ui.circular.image{:src => "#{@pin.user.avatar_url}"}/
+        %img.ui.avatar.image{:src => "#{@pin.user.avatar_url}"}/
         = @pin.user.username
       %div.ui.divider
       %div.ui.content
