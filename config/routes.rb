@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get '/api/pins', to: "pins#allpins"
+
   resources :professions
   resources :boards
   resources :categories

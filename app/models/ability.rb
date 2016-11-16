@@ -8,7 +8,7 @@ class Ability
        if user.is_an_admin?
          can :manage, :all
        else
-         can [:read, :getbycategory], Pin
+         can [:read, :getbycategory,:allpins], Pin
          can [:getinfo, :create, :update, :destroy, ], Pin, user_id: user.id
        end
     #
