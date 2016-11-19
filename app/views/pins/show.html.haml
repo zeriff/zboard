@@ -17,36 +17,45 @@
           = @pin.oembed_str.html_safe
       - when ""
         = link_to (image_tag @pin.image_url.to_s, :class => "ui centered fluid image"), @pin.pin_url, target: "_blank"
+      -# %div.ui.divider
+      -# .save{class: "#{@pin.id}"}
+      -#   = render "save/form", savable: @pin
+      -# .like{class: "#{@pin.id}"}
+      -#   = render 'likes/form', likeable: @pin
+    %div.five.wide.column
+      %div.ui.mini.right.floated.basic.icon.dropdown.pointing.floating.button
+        %i.setting.icon
+        %div.menu
+          - if @pin.user != current_user
+            .item
+              Report this
+          - if can? :update, @pin
+            = link_to "Edit", edit_pin_path(@pin), class: "item"
+          - if can? :destroy, @pin
+            = link_to 'Delete', @pin, method: :delete, data: { confirm: 'Are you sure?' },class: "item"
+      %img.ui.avatar.image{:src => "#{@pin.user.avatar_url}"}/
+      = @pin.user.username
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      = link_to @pin.board.name, user_board_path(@pin.user.username, @pin.board.id),class: "ui mini tag red label"
+      %div.ui.divider
+      %div.ui.content
+        .ui.header
+          = @pin.title
+        Pin from:
+        %b
+          = link_to @pin.parent_provider, @pin.pin_url, target: "_blank"
+        %div.ui.divider
+  %div.ui.divider
+  %div.ui.two.column.centered.stackable.grid
+    %div.eleven.wide.column
       - @pin.genre_list.each do |c|
         %a.ui.mini.horizontal.teal.label
           = c
-      %div.ui.divider
+    %div.five.wide.column
       .save{class: "#{@pin.id}"}
         = render "save/form", savable: @pin
       .like{class: "#{@pin.id}"}
         = render 'likes/form', likeable: @pin
-    %div.five.wide.column
-      - if can? :update, @pin
-        = link_to "Edit", edit_pin_path(@pin), class: "ui mini green button"
-      - if can? :destroy, @pin
-        = link_to 'Delete', @pin, method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini red button"
-        %div.ui.divider
-      %h4.ui.header
-        %img.ui.avatar.image{:src => "#{@pin.user.avatar_url}"}/
-        = @pin.user.username
-      %div.ui.divider
-      %div.ui.content
-        - if @pin.board != nil
-          = link_to @pin.board.name, user_board_path(@pin.user.username, @pin.board.id),class: "ui mini tag red label"
-        - else
-          %a.ui.mini.tag.red.label
-            unknown
-        .ui.header
-          = @pin.title
-        .ui.description
-          = @pin.description
-
-
 .ui.header
   Suggestions
 .ui.divider
