@@ -1,50 +1,50 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.scss.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-.userinfo{
-  margin-top: 50px;
-}
-
-.profilecontainer{
-
-}
-.cover{
-    height: 430px;
-}
-
-.ui.mini.statistics{
-  font-size: 8.9px;
-  margin: auto;
-}
-b.username{
-  font-size: 20px;
-  font-weight: lighter;
-}
-.small .dp
-{
-  height: 220px;
-}
-.dp{
-  height: 250px;
-}
- @media only screen and (max-width: 500px) {
-  .dp.ui.centered.fluid.image
-  {
-    width: 120px;
-  }
-  .profile{
-      height: 320px;
-  }
-  .dp{
-    height: 120px;
-    width: 120px;
-  }
-  .cover{
-      height: 200px;
-  }
-  .mavatar.ui.avatar.right.floated.image{
-		display: none;
-	}
-}
+// // Place all the styles related to the home controller here.
+// // They will automatically be included in application.css.scss.
+// // You can use Sass (SCSS) here: http://sass-lang.com/
+//
+//
+// .userinfo{
+//   margin-top: 50px;
+// }
+//
+// .profilecontainer{
+//
+// }
+// .cover{
+//     height: 430px;
+// }
+//
+// .ui.mini.statistics{
+//   font-size: 8.9px;
+//   margin: auto;
+// }
+// b.username{
+//   font-size: 20px;
+//   font-weight: lighter;
+// }
+// .small .dp
+// {
+//   height: 220px;
+// }
+// .dp{
+//   height: 250px;
+// }
+//  @media only screen and (max-width: 500px) {
+//   .dp.ui.centered.fluid.image
+//   {
+//     width: 120px;
+//   }
+//   .profile{
+//       height: 320px;
+//   }
+//   .dp{
+//     height: 120px;
+//     width: 120px;
+//   }
+//   .cover{
+//       height: 200px;
+//   }
+//   .mavatar.ui.avatar.right.floated.image{
+// 		display: none;
+// 	}
+// }

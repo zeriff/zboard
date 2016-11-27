@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  root 'app#index'
+  get '/api/getpins', to: "app#getpins"
+  get 'app/index'
+  get '*unmatched_route', to: 'app#index'
 
-  get '/api/pins', to: "pins#allpins"
 
   resources :professions
   resources :boards
@@ -10,7 +13,7 @@ Rails.application.routes.draw do
   # get 'api/pins', to: "pins#pins"
   devise_for :users, controllers: {registrations: 'registrations'}
 
-  root to: 'home#index'
+  # root to: 'home#index'
 
   get ":username/follows", to: 'home#follows', as: :user_follows
   get ":username/followers", to: 'home#followers', as: :user_followers

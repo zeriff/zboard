@@ -1,3 +1,61 @@
+-# !!!
+-# %html
+-#   %head
+-#     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+-#     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+-#     %title Zdevise
+-#     = csrf_meta_tags
+-#     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+-#     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+-#     %script{src:"http://localhost:3808/webpack-dev-server.js"}
+-#   %body
+-#     %div.ui.top.fixed.tiny.borderless.menu
+-#       %div.ui.container
+-#         %div.item
+-#           = link_to (image_tag "/logo.png", class: "ui mini image"), root_path
+-#         .ui.fluid.search.item
+-#           .ui.icon.input
+-#             %input.prompt{:placeholder => "Search...", :type => "text", :data => {noblock: true}}/
+-#             %i.search.link.icon
+-#           .results
+-#         - if user_signed_in?
+-#           %div.right.menu
+-#             %div.item
+-#               = link_to new_pin_path, class: "ui labeled icon button" do
+-#                 %i.tag.icon
+-#                 New
+-#             %div.item.ui.floating.dropdown.button
+-#               = current_user.username
+-#               %div.menu
+-#                 = link_to "Profile", profile_path(current_user.username), class: "item"
+-#                 = link_to "Find Artists", findfriend_path, class: "item"
+-#                 = link_to "Saved Pins", saved_pins_path(current_user.username), class: "item"
+-#             %div.item
+-#               = link_to destroy_user_session_path, method: :delete, class: "ui circular google plus icon button" do
+-#                 %i.power.icon
+-#         - else
+-#           %div.right.menu
+-#             %div.item
+-#               = link_to "Sign In", new_user_session_path, class: "ui basic blue button"
+-#             %div.item
+-#               = link_to "Sign Up", new_user_registration_path, class: "ui basic grey button"
+-#
+-#     - flash.each do |type, msg|
+-#       - if type == 'notice'
+-#         :javascript
+-#             toastr.info('#{msg}')
+-#       - if type == 'alert'
+-#         :javascript
+-#             toastr.warning('#{msg}')
+-#       - if type == 'error'
+-#         :javascript
+-#             toastr.error('#{msg}')
+-#     #content
+-#       %div.ui.container
+-#         =yield
+-#     = javascript_include_tag *webpack_asset_paths('application')
+
+
 !!!
 %html
   %head
@@ -7,48 +65,7 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %script{src:"http://localhost:3808/webpack-dev-server.js"}
   %body
-    %div.ui.top.fixed.tiny.borderless.menu
-      %div.ui.container
-        %div.item
-          = link_to (image_tag "/logo.png", class: "ui mini image"), root_path
-        .ui.fluid.search.item
-          .ui.icon.input
-            %input.prompt{:placeholder => "Search...", :type => "text", :data => {noblock: true}}/
-            %i.search.link.icon
-          .results
-        - if user_signed_in?
-          %div.right.menu
-            %div.item
-              = link_to new_pin_path, class: "ui labeled icon button" do
-                %i.tag.icon
-                New
-            %div.item.ui.floating.dropdown.button
-              = current_user.username
-              %div.menu
-                = link_to "Profile", profile_path(current_user.username), class: "item"
-                = link_to "Find Artists", findfriend_path, class: "item"
-                = link_to "Saved Pins", saved_pins_path(current_user.username), class: "item"
-            %div.item
-              = link_to destroy_user_session_path, method: :delete, class: "ui circular google plus icon button" do
-                %i.power.icon
-        - else
-          %div.right.menu
-            %div.item
-              = link_to "Sign In", new_user_session_path, class: "ui basic blue button"
-            %div.item
-              = link_to "Sign Up", new_user_registration_path, class: "ui basic grey button"
-
-    - flash.each do |type, msg|
-      - if type == 'notice'
-        :javascript
-            toastr.info('#{msg}')
-      - if type == 'alert'
-        :javascript
-            toastr.warning('#{msg}')
-      - if type == 'error'
-        :javascript
-            toastr.error('#{msg}')
-    #content
-      %div.ui.container
-        =yield
+    = yield
+    = javascript_include_tag *webpack_asset_paths('application')

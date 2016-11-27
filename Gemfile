@@ -25,8 +25,12 @@ gem 'oembed'
 gem 'taps'
 gem "fog-aws"
 gem 'cancancan', '~> 1.10'
+
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'acts_as_saveable', '~> 0.10.1'
+
+
+gem 'webpack-rails-react'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -42,3 +46,5 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'foreman'
