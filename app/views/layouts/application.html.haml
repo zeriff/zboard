@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "initial-scale=0.7, user-scalable=no", :name => "viewport"}
     %title Zdevise
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -12,11 +12,6 @@
       %div.ui.container
         %div.item
           = link_to (image_tag "/logo.png", class: "ui mini image"), root_path
-        -# .ui.fluid.search.item
-        -#   .ui.icon.input
-        -#     %input.prompt{:placeholder => "Search...", :type => "text", :data => {noblock: true}}/
-        -#     %i.search.link.icon
-        -#   .results
         %div.item
           = link_to search_path, class: "ui labeled icon button" do
             %i.search.icon
