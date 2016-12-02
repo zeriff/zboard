@@ -9,7 +9,7 @@ class User extends React.Component {
                 <div className="ui centered raised card">
                     <div className="image">
                         <a href={this.props.user.username}>
-                            <img className="ui image fluid" src={this.props.user.avatar.url}></img>
+                            <img className="ui image fluid" src={this.props.user.avatar.mini.url}></img>
                         </a>
                     </div>
                     <div className="content">
