@@ -12,15 +12,6 @@
       %div.ui.container
         %div.item
           = link_to (image_tag "/logo.png", class: "ui mini image"), root_path
-        -# .ui.fluid.search.item
-        -#   .ui.icon.input
-        -#     %input.prompt{:placeholder => "Search...", :type => "text", :data => {noblock: true}}/
-        -#     %i.search.link.icon
-        -#   .results
-        %div.item
-          = link_to search_path, class: "ui labeled icon button" do
-            %i.search.icon
-            Search
         - if user_signed_in?
           %div.right.menu
             %div.item

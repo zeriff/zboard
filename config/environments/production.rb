@@ -101,6 +101,6 @@ Rails.application.configure do
     :password       => ENV['SENDGRID_PASSWORD'],
     :domain         => ENV['SENDGRID_DOMAIN']
   }
-
+  config.react.variant = :production
   # config.action_mailer.delivery_method = :letter_opener
 end

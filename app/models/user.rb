@@ -1,5 +1,10 @@
 class User < ApplicationRecord
   include BoardsHelper
+
+  include PgSearch
+
+  multisearchable :against => [:username, :location, :intrest]
+
   mount_uploader :avatar, AvatarUploader
   mount_uploader :cover, CoverUploader
 

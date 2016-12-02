@@ -1,4 +1,8 @@
 class Pin < ApplicationRecord
+  include PgSearch
+
+  multisearchable :against => [:title, :author, :parent_provider]
+
   mount_uploader :image, PinImageUploader
   attr_accessor :host
   belongs_to :board, class_name: 'Board'
@@ -14,5 +18,5 @@ class Pin < ApplicationRecord
   validates :pin_url, presence: true
   validates :board_id, presence: true
 
-   self.per_page = 15
+   self.per_page = 25
 end

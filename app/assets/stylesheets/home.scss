@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.searcharea{
+  height: 180px;
+  // background-image: url('http://localhost:3000/uploads/pin/image/55/thumb_maxresdefault.jpg');
+  background-color: grey;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 
 .userinfo{
   margin-top: 50px;

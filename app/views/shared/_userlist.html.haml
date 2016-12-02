@@ -1,16 +1,1 @@
-.pins.transitions-enabled
-  - users.each do |user|
-    .box.user
-      %div.ui.centered.raised.card
-        %div.image
-          = link_to (image_tag user.avatar.thumb.url.to_s, class: "ui image fluid"), profile_path(user.username)
-        %div.content
-          .header
-            = user.username
-          .description
-            = user.about
-          .meta
-            = user.location
-          .ui.horizontal.divider
-            #follow{id:"#{user.id}"}
-              = render "follows/form", user: user
+= react_component("UserList", {data: users})

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   get '/api/pins', to: "pins#allpins"
 
+  get "/search", to: "search#search", as: :search
+  get "/find/:query", to: "search#find"
+
   resources :professions
   resources :boards
   resources :categories
@@ -11,6 +14,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'registrations'}
 
   root to: 'home#index'
+
+
+  get '/getpins', to:'home#get_pins'
 
   get ":username/follows", to: 'home#follows', as: :user_follows
   get ":username/followers", to: 'home#followers', as: :user_followers
@@ -25,20 +31,23 @@ Rails.application.routes.draw do
   post 'pin/getinfo', to: 'pins#getinfo', as: "pininfo"
   get 'pins/category/:category_id', to: 'pins#getbycategory', as: "categorize"
 
-
+  get 'like/status/:id', to: 'likes#get_like_status'
   get 'like/:id', to: "likes#create", as: :likes
   delete 'like/:id', to: "likes#destroy", as: :like
 
+  get 'save/status/:id', to: 'save#get_save_status'
   get 'save/:id', to: "save#create", as: :saves
   delete 'save/:id', to: "save#destroy", as: :save
 
+
+  get "follow/status/:id", to: "follows#get_follow_status"
   get 'follow/:id', to: "follows#create", as: :follows
   delete 'follow/:id', to: "follows#destroy", as: :follow
   delete 'follow/delete/:id', to: "follows#delete", as: :del_currupt_follow
 
 
   #search
-  get "/search/:query", to: "search#search", as: :serach
+  # get "/search/:query", to: "search#search", as: :serach
   get "/searchlocations/:query", to: "search#locationSearch", as: :locationsearch
   #admin
   get 'superuser/dashboard'

@@ -6,14 +6,22 @@ class FollowsController < ApplicationController
 
   def create
     current_user.follow(@user)
+    render json:{
+      following: true
+    }
+end
+
+  def get_follow_status
+    render json:{
+      following: (user_signed_in? && (current_user.following?(@user)))
+    }
   end
 
   def destroy
     current_user.stop_following(@user)
-    @likecount = 0
-    @user.pins.each do |p|
-      @likecount = @likecount +  p.get_likes.size
-    end
+    render json:{
+      following: false
+    }
   end
 
   def delete

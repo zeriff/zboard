@@ -1,3 +1,31 @@
+// ********************************************
+// ***************MASONRY**********************
+// ********************************************
+var masonry = {
+    bind: function(classname, selector) {
+        var cName = '.' + classname;
+        var sel = '.' + selector
+        $(cName).imagesLoaded(function() {
+            $(cName).masonry({
+                isAnimated: true,
+                animationOptions: {
+                    duration: 500,
+                    easing: 'swing',
+                    queue: false
+                },
+                itemSelector: sel,
+                isFitWidth: true
+            })
+        });
+    },
+    reload: function(classname) {
+        var cName = "." + classname;
+        $(cName).imagesLoaded(function() {
+            $(cName).masonry('reload');
+        });
+    }
+}
+
 var board = {
     refreshMasonry: function() {
         $('#pins').imagesLoaded(function() {
@@ -31,5 +59,11 @@ var imagehelper = {
             };
         }
         reader.readAsDataURL(input.files[0])
+    }
+}
+
+var TokenMgr = {
+    getCSRFToken: function() {
+        return $('meta[name="csrf-token"]').attr('content');
     }
 }

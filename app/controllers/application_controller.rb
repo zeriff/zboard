@@ -4,6 +4,18 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+
+
+  # Custom authorization for ajax
+  def auth_user
+    if !user_signed_in?
+      render json: {
+        msg: "You need to sign in or sign up before continuing."
+      }, status: 401
+    end
+  end
+
+
   def authenticate_admin
     if !current_user.is_an_admin?
       redirect_to :root

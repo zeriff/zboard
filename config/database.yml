@@ -14,7 +14,8 @@ production:
 development:
   adapter: postgresql
   encoding: unicode
-  database: db/development_psql
+  # database: db/development_psql
+  database: herokulocaldb
   pool: 5
   username:
   password:

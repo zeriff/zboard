@@ -1,4 +1,3 @@
-%h1
+.ui.horizontal.divider
   Saved pins
-.pins.transitions-enabled
-  = render @pins
+= react_component('Pins', {data: @pinsdata})

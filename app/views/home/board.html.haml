@@ -13,7 +13,6 @@
           .statistic
             .value
               = link_to b.pins.count, user_board_path(b.user.username,b.id)
-              -# = b.pins.count
             .label
               = link_to b.name, user_board_path(b.user.username,b.id)
 %br

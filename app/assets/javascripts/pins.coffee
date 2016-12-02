@@ -2,10 +2,10 @@ $ ->
 
     # $('.ui.embed').embed()
 
-    $('#pins').imagesLoaded ->
-      $('#pins').masonry
-        itemSelector: '.box'
-        isFitWidth: true
+    # $('#pins').imagesLoaded ->
+    #   $('#pins').masonry
+    #     itemSelector: '.box'
+    #     isFitWidth: true
 
     $('#pinurlbutton').bind 'click', ->
       # board.showForm()

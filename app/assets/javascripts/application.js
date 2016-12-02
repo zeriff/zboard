@@ -19,6 +19,10 @@
 //= require sweetalert.min
 //= require jquery.blockUI
 //= require jquery.inview
+//= require react
+//= require react_ujs
+//= require components
+//= require axios
 //= require_tree .
 
 var constant = {

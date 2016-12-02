@@ -28,6 +28,12 @@ gem 'cancancan', '~> 1.10'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'acts_as_saveable', '~> 0.10.1'
 
+gem 'pg_search'
+
+
+gem 'react-rails'
+gem 'axios_rails', '~> 0.7.0'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
