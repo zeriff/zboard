@@ -14,9 +14,7 @@ class SearchArea extends React.Component {
         var me = this;
         this.setState({loading: "loading"});
         axios.get('/find/' + this.state.query).then(function(res) {
-            setTimeout(function() {
-                me.setState({pins: res.data, loading: "idle"})
-            }, 2000)
+            me.setState({pins: res.data, loading: "idle"})
         });
     }
     _onKeyUp(e) {
