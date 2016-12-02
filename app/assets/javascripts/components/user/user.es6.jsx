@@ -4,12 +4,24 @@ class User extends React.Component {
     }
 
     render() {
+        let avatarurl = ""
+        if (this.props.user.avatar.mini.url) {
+            avatarurl = this.props.user.avatar.mini.url;
+        } else {
+            if (this.props.user.gender == 0) {
+                avatarurl = "https://s3.ap-south-1.amazonaws.com/zboarddefaults/boy.png";
+            } else {
+                avatarurl = "https://s3.ap-south-1.amazonaws.com/zboarddefaults/girl.png";
+            }
+
+        }
+
         return (
             <div className="box user">
                 <div className="ui centered raised card">
                     <div className="image">
                         <a href={this.props.user.username}>
-                            <img className="ui image fluid" src={this.props.user.avatar.mini.url}></img>
+                            <img className="ui image fluid" src={avatarurl}></img>
                         </a>
                     </div>
                     <div className="content">
