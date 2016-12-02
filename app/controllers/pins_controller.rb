@@ -17,6 +17,8 @@ class PinsController < ApplicationController
   # GET /pins/1
   # GET /pins/1.json
   def show
+    pins = Board.find(@pin.board_id).pins.sample(8)
+    @pins = pins.as_json(include: { user: {only: [:username, :avatar]}})
   end
 
   # GET /pins/new
