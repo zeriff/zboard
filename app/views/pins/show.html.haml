@@ -17,11 +17,6 @@
           = @pin.oembed_str.html_safe
       - when ""
         = link_to (image_tag @pin.image_url.to_s, :class => "ui centered fluid image"), @pin.pin_url, target: "_blank"
-      -# %div.ui.divider
-      -# .save{class: "#{@pin.id}"}
-      -#   = render "save/form", savable: @pin
-      -# .like{class: "#{@pin.id}"}
-      -#   = render 'likes/form', likeable: @pin
     %div.five.wide.column
       %div.ui.mini.right.floated.basic.icon.dropdown.pointing.floating.button
         %i.setting.icon

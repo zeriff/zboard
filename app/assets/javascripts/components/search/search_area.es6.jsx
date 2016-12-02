@@ -12,12 +12,15 @@ class SearchArea extends React.Component {
     }
     emitSearch() {
         var me = this;
+        this.setState({loading: "loading"});
         axios.get('/find/' + this.state.query).then(function(res) {
-            me.setState({pins: res.data, loading: "idle"})
+            setTimeout(function() {
+                me.setState({pins: res.data, loading: "idle"})
+            }, 2000)
         });
     }
     _onKeyUp(e) {
-        this.setState({pins: [], query: e.target.value, loading: "loading"});
+        this.setState({pins: [], query: e.target.value});
         e.keyCode === 13 && this.emitSearch();
     }
     render() {
@@ -26,14 +29,13 @@ class SearchArea extends React.Component {
 
         if (this.state.loading == 'loading') {
             items = (
-                <div className="ui loader"></div>
+                <div className="ui active centered inline loader"></div>
             )
         } else {
             items = (
                 <SearchItems searchitems={pins}></SearchItems>
             )
         }
-
         return (
             <div>
                 <div className="ui two column center aligned stackable grid">
