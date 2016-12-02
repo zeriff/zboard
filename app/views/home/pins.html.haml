@@ -1,5 +1,4 @@
 .ui.horizontal.divider
   .ui.basic.button
     = @user.username
-.pins.transitions-enabled
-  = render @pins
+= react_component("Pins", {data: @pins})
