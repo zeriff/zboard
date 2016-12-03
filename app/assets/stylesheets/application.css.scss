@@ -56,12 +56,20 @@ a {
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px){}
 
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+@media only screen and (min-device-width : 320px) and (max-device-width : 350px){
+  .box{
+    padding: 5px;
+    width: 230px;
+  }
+}
+
+@media only screen and (min-device-width : 360px) and (max-device-width : 480px){
   .box{
     padding: 5px;
     width: 250px;
   }
 }
+
 
 @media only screen and (-webkit-min-device-pixel-ratio : 1.5){}
 
