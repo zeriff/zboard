@@ -19,6 +19,8 @@
  */
 
 @import "semantic-ui";
+
+
 body{
     width: 100%;
     height: 100%;
@@ -30,9 +32,7 @@ a {
     text-decoration: none;
     cursor: pointer;
 }
-.ui.menu{
-//  background-color: //#F2F4F4 !important;
-}
+
 #session {
   padding-top: 100px;
   width: 100%;
@@ -46,3 +46,25 @@ a {
   padding-top: 60px;
   //margin-top: 50px;
 }
+.box{
+    padding: 5px;
+    width: 280px;
+}
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px){}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+  .box{
+    padding: 5px;
+    width: 285px;
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5){}
+
+@media only screen and (min-device-pixel-ratio : 1.5){}
+
+
+@media handheld and (max-width: 960px){}

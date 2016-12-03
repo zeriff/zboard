@@ -60,7 +60,8 @@ class HomeController < ApplicationController
   def board
     @board = Board.find(params[:board_id])
     @user = User.find_by(username: params[:username])
-    @pins = @board.pins.order("created_at desc")
+    @pins = @board.pins.order("created_at desc").as_json(include: { user: {only: [:username, :avatar]}})
+
   end
 
   def pins

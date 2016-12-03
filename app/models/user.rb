@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   include BoardsHelper
-
   include PgSearch
+  after_create :set_default_url!
+
+
 
   multisearchable :against => [:username, :location, :intrest]
 
@@ -27,6 +29,16 @@ class User < ApplicationRecord
 
   acts_as_followable
   acts_as_follower
+
+  private
+    def set_default_url!
+      if gender == 0
+        url = AvatarUploader.default_url("boy")
+      else
+        url = AvatarUploader.default_url("girl")
+      end
+      update!(remote_avatar_url: url)
+    end
 
   def self.all_except(user)
     where.not(id: user).where.not(is_an_admin: true)

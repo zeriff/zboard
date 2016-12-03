@@ -1,6 +1,6 @@
 module BoardsHelper
   def initiate_boards_for_user
-    default_boards = ['YouTube', 'Instagram', 'Vine', 'FaceBook'].freeze
+    default_boards = ['MeFavBoard'].freeze
     default_boards.each do |board|
       build_board(board)
     end

@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
-    %meta{:content => "initial-scale=0.7, user-scalable=no", :name => "viewport"}
+    %meta{:content => "initial-scale=0.5, user-scalable=no", :name => "viewport"}
     %title Zdevise
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -45,5 +45,5 @@
         :javascript
             toastr.error('#{msg}')
     #content
-      %div.ui.container
-        =yield
+      -# %div.ui.container
+      =yield

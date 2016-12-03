@@ -1,10 +1,7 @@
 class Pin extends React.Component {
     render() {
         return (
-            <div className="box" style={{
-                padding: "5px",
-                width: "280px"
-            }}>
+            <div className="box">
                 <div className="ui centered raised link card">
                     <div className="image">
                         <a href={"/pins/" + this.props.pin.id}>
@@ -12,7 +9,7 @@ class Pin extends React.Component {
                         </a>
                     </div>
                     <div className="content">
-                        <img className="mavatar ui avatar right floated image" src={this.props.pin.user.avatar.thumb.url}></img>
+                        <img className="mavatar ui avatar right floated image" src={this.props.pin.user.avatar.mini.url}></img>
                         <b>
                             {this.props.pin.user.username}
                         </b>

@@ -1,18 +1,18 @@
-%div.ui.two.column.mobile.reversed.centered.stackable.grid
-  %div.four.wide.column
-    = render "shared/userinfotile", user: @user
-  %div.twelve.wide.column
-    .cover.ui.segment{style: "background-image: url('#{@user.cover_url.to_s}'); background-repeat: no-repeat;  background-size: cover; background-position: top"}
-      - if current_user == @user
-        %div.ui.mini.orange.right.floated.pointing.floating.dropdown.icon.button
-          %i.setting.icon
-          %div.menu
-            = link_to "Edit Profile", edit_user_registration_path, class: "item"
-        #editcover.ui.mini.icon.right.floated.button
-          %i.pencil.icon
+.ui.container
+  %div.ui.two.column.mobile.reversed.centered.stackable.grid
+    %div.four.wide.column
+      = render "shared/userinfotile", user: @user
+    %div.twelve.wide.column
+      .cover.ui.segment{style: "background-image: url('#{@user.cover_url.to_s}'); background-repeat: no-repeat;  background-size: cover; background-position: top"}
+        - if current_user == @user
+          %div.ui.mini.orange.right.floated.pointing.floating.dropdown.icon.button
+            %i.setting.icon
+            %div.menu
+              = link_to "Edit Profile", edit_user_registration_path, class: "item"
+          #editcover.ui.mini.icon.right.floated.button
+            %i.pencil.icon
 
 .ui.divider
-
 = react_component('Pins', {data: @pinsdata})
 
 - if current_user == @user
@@ -25,9 +25,9 @@
       .description
         %br
         .ui.header Please upload image file
-        = simple_form_for(@user, as: :user, url: registration_path(@user), html: { method: :put }) do |f|
-          = f.input :cover, class:"ui button", label: false
-          = f.button :submit, value: "Save", class: "ui basic disabled button", id: "co_submit"
-    .actions
-      .ui.black.deny.button
-        Cancel
+        .actions
+          = simple_form_for(@user, as: :user, url: registration_path(@user), html: { method: :put }) do |f|
+            = f.input :cover, class:"ui button", label: false
+            = f.button :submit, value: "Save", class: "ui basic disabled button", id: "co_submit"
+            .ui.black.deny.button
+              Cancel

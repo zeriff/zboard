@@ -1,27 +1,33 @@
 %br
-%div.ui.two.column.centered.stackable.grid
-  %div.four.wide.column.small
-    = render "shared/smalluserinfotile", user: @user
-  %div.twelve.wide.column
-    .ui.segment
-      %a.ui.blue.ribbon.label
-        Collection
-      %br
-      %br
-      %div.ui.small.statistics
-        - @board.user.boards.each do |b|
-          .statistic
-            .value
-              = link_to b.pins.count, user_board_path(b.user.username,b.id)
-            .label
-              = link_to b.name, user_board_path(b.user.username,b.id)
-%br
-.ui.horizontal.divider
-  %h1
-    = @board.name
+.ui.container
+  %div.ui.two.column.centered.stackable.grid
+    %div.four.wide.column.small
+      = render "shared/smalluserinfotile", user: @user
+    %div.twelve.wide.column
+      .ui.segment
+        %a.ui.blue.ribbon.label
+          Collection
+        %br
+        %br
+        %div.ui.small.statistics
+          - @board.user.boards.each do |b|
+            .statistic
+              .value
+                = link_to b.pins.count, user_board_path(b.user.username,b.id)
+              .label
+                = link_to b.name, user_board_path(b.user.username,b.id)
+  %br
+  .ui.horizontal.divider
+    %h1
+      = @board.name
+    = link_to "Edit", edit_board_path(@board), class: "ui mini basic button"
+    = link_to 'Delete', @board, method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini basic red button"
+
 - if @pins.count > 0
-  .pins.transitions-enabled
-    = render @pins
+  = react_component("Pins",{data: {pins: @pins}})
 - else
-  %div.ui.disabled.circular.button
-    No pins to show
+  %div.ui.two.column.center.aligned.stackable.grid
+    %div.six.wide.column
+      %br
+      %div.ui.disabled.circular.button
+        No pins to show

@@ -31,7 +31,9 @@ class Pins extends React.Component {
 
         return (
             <div>
-                <div className="pins transitions-enabled">
+                <div className="pins transitions-enabled" style={{
+                    margin: "auto"
+                }}>
                     {this._renderPin()}
                 </div>
                 <Pagination {...this.state}></Pagination>

@@ -27,9 +27,9 @@
       .description
         %br
         .ui.header Please upload image file
-        = simple_form_for(user, as: :user, url: registration_path(user), html: { method: :put }) do |f|
-          = f.input :avatar, class:"ui button", label: false
-          = f.button :submit, value: "Save", class: "ui basic disabled button", id: "av_submit"
-    .actions
-      .ui.black.deny.button
-        Cancel
+        .actions
+          = simple_form_for(user, as: :user, url: registration_path(user), html: { method: :put }) do |f|
+            = f.input :avatar, class:"ui button", label: false
+            = f.button :submit, value: "Save", class: "ui basic disabled button", id: "av_submit"
+            .ui.black.deny.button
+              Cancel

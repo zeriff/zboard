@@ -44,8 +44,3 @@ class SaveButton extends React.Component {
 
     }
 }
-
-// - if user_signed_in? && (current_user.saved_for? savable)
-//   = link_to "Saved", save_path(savable), method: :delete, remote: true, data: { noblock: true}, class: "ui mini right floated blue button"
-// - else
-//   = link_to "Save", saves_path(savable), remote: true, data: { noblock: true}, class: "ui mini right floated basic button"

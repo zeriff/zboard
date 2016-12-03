@@ -27,11 +27,6 @@ var masonry = {
 }
 
 var board = {
-    refreshMasonry: function() {
-        $('#pins').imagesLoaded(function() {
-            $("#pins").masonry('reload');
-        });
-    },
     showForm: function() {
         var form = $('.pinform');
         swal({title: "Enter Url", html: form.html(), showCancelButton: true, showLoaderOnConfirm: true}).then(function(e) {
@@ -40,11 +35,6 @@ var board = {
                 $(".swal2-content .form").submit();
             }
         }, function(dismiss) {});
-    },
-    bind_masonry: function(toEl) {
-        $(".pins").imagesLoaded(function() {
-            $(".pins").masonry({});
-        });
     }
 }
 

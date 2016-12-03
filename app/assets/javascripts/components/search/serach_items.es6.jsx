@@ -35,7 +35,9 @@ class SearchItems extends React.Component {
     render() {
         return (
             <div>
-                <div className="pins transitions-enabled">
+                <div className="pins transitions-enabled" style={{
+                    margin: "auto"
+                }}>
                     {this._renderItems()}
                 </div>
             </div>
