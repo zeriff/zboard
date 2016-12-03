@@ -20,7 +20,6 @@
 
 @import "semantic-ui";
 
-
 body{
     width: 100%;
     height: 100%;
@@ -48,7 +47,9 @@ a {
 }
 .box{
     padding: 5px;
-    width: 280px;
+    // width: 280px;
+    width: 250px;
+    font-size: 11px;
 }
 
 

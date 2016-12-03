@@ -20,8 +20,9 @@
   .ui.horizontal.divider
     %h1
       = @board.name
-    = link_to "Edit", edit_board_path(@board), class: "ui mini basic button"
-    = link_to 'Delete', @board, method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini basic red button"
+    - if @board.user == current_user
+      = link_to "Edit", edit_board_path(@board), class: "ui mini basic button"
+      = link_to 'Delete', @board, method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini basic red button"
 
 - if @pins.count > 0
   = react_component("Pins",{data: {pins: @pins}})
