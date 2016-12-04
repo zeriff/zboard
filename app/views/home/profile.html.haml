@@ -1,16 +1,19 @@
+-# = react_component("UserProfile", {user: @user})
+
 .ui.container
-  %div.ui.two.column.mobile.reversed.centered.stackable.grid
-    %div.four.wide.column
-      = render "shared/userinfotile", user: @user
-    %div.twelve.wide.column
-      .cover.ui.segment{style: "background-image: url('#{@user.cover_url.to_s}'); background-repeat: no-repeat;  background-size: cover; background-position: top"}
-        - if current_user == @user
-          %div.ui.mini.orange.right.floated.pointing.floating.dropdown.icon.button
-            %i.setting.icon
-            %div.menu
-              = link_to "Edit Profile", edit_user_registration_path, class: "item"
-          #editcover.ui.mini.icon.right.floated.button
-            %i.pencil.icon
+  .profile
+    %div.ui.two.column.mobile.reversed.centered.stackable.grid
+      %div.four.wide.column
+        = render "shared/userinfotile", user: @user
+      %div.twelve.wide.column
+        .cover.ui.segment{style: "background-image: url('#{@user.cover_url.to_s}'); background-repeat: no-repeat;  background-size: cover; background-position: top"}
+          - if current_user == @user
+            %div.ui.mini.orange.right.floated.pointing.floating.dropdown.icon.button
+              %i.setting.icon
+              %div.menu
+                = link_to "Edit Profile", edit_user_registration_path, class: "item"
+            #editcover.ui.mini.icon.right.floated.button
+              %i.pencil.icon
 
 .ui.divider
 = react_component('Pins', {data: @pinsdata})

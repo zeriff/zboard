@@ -4,7 +4,8 @@ class HomeController < ApplicationController
   # ROOT PATH
   def index
     if user_signed_in?
-      @pins = Pin.tagged_with(current_user.intrest_list, :on => :genre, :any => true).paginate(:page => params[:page]).order("created_at desc")
+      following_ids = current_user.following_users.map(&:id)
+      @pins = Pin.where(user_id: following_ids).tagged_with(current_user.intrest_list, :on => :genre, :any => true).paginate(:page => params[:page]).order("created_at desc")
     else
       @pins = Pin.paginate(:page => params[:page]).order("created_at desc")
     end

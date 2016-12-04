@@ -30,7 +30,7 @@ class Pins extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="ui container">
                 <div className="pins transitions-enabled" style={{
                     margin: "auto"
                 }}>

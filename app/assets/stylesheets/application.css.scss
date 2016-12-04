@@ -52,6 +52,13 @@ a {
     font-size: 11px;
 }
 
+@media only screen and (min-device-width : 1270px){
+  .ui.container{
+    width: 1270px!important;
+    // width: inherit!important;
+  }
+}
+
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px){}
 
