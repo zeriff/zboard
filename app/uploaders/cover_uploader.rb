@@ -36,6 +36,14 @@ class CoverUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [1500, 800]
   end
 
+  def fix_exif_rotation #this is my attempted solution
+   manipulate! do |img|
+     img.tap(&:auto_orient)
+   end
+  end
+
+  process :fix_exif_rotation
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list
