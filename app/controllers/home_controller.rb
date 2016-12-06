@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
   respond_to :js
-
   # ROOT PATH
+
   def index
+
     if user_signed_in?
       following_ids = current_user.following_users.map(&:id)
       @pins = Pin.where(user_id: following_ids).tagged_with(current_user.intrest_list, :on => :genre, :any => true).paginate(:page => params[:page]).order("created_at desc")
@@ -44,10 +45,6 @@ class HomeController < ApplicationController
     }
   end
 
-  def edit_profile
-
-  end
-
   def savedpins
     @user = User.find_by(username: params[:username])
     @pins = @user.saves.up.saveables
@@ -55,14 +52,12 @@ class HomeController < ApplicationController
     @pinsdata = {
         pins: @pins.as_json(include: { user: {only: [:username, :avatar]}})
     }
-
   end
 
   def board
     @board = Board.find(params[:board_id])
     @user = User.find_by(username: params[:username])
     @pins = @board.pins.order("created_at desc").as_json(include: { user: {only: [:username, :avatar]}})
-
   end
 
   def pins

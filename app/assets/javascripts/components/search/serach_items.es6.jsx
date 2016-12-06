@@ -4,7 +4,9 @@ class SearchItems extends React.Component {
     }
 
     componentDidUpdate() {
-        masonry.reload('pins');
+        if (this.props.searchitems.length > 0) {
+            masonry.reload('pins');
+        }
     }
 
     componentDidMount() {

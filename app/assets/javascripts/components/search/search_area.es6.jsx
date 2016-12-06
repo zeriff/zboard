@@ -35,7 +35,7 @@ class SearchArea extends React.Component {
             )
         }
         return (
-            <div>
+            <div className="ui container">
                 <div className="ui two column center aligned stackable grid">
                     <div className="eight wide column">
                         <div className="ui vertical segment center aligned">

@@ -6,17 +6,18 @@ var masonry = {
         var cName = '.' + classname;
         var sel = '.' + selector
         $(cName).imagesLoaded(function() {
-            $(cName).masonry({
-                isAnimated: true,
-                animationOptions: {
-                    duration: 500,
-                    easing: 'swing',
-                    queue: false
-                },
-                itemSelector: sel,
-                isFitWidth: true
-            })
+            $(cName).masonry('reload');
         });
+        $(cName).masonry({
+            isAnimated: true,
+            animationOptions: {
+                duration: 500,
+                easing: 'linear',
+                queue: false
+            },
+            itemSelector: sel,
+            isFitWidth: true
+        })
     },
     reload: function(classname) {
         var cName = "." + classname;

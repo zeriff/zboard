@@ -1,19 +1,11 @@
 class PinsController < ApplicationController
   load_and_authorize_resource
+
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :allpins, :getbycategory]
   respond_to :js
 
-  # GET /pins
-  # GET /pins.json
-  def index
-    @pins = Pin.all.order("created_at desc")
-  end
 
-  def allpins
-    @pins = Pin.all.order("created_at desc")
-    render json: @pins
-  end
   # GET /pins/1
   # GET /pins/1.json
   def show
@@ -93,8 +85,6 @@ class PinsController < ApplicationController
   def edit
   end
 
-  # POST /pins
-  # POST /pins.json
   def create
     @pin = current_user.pins.build(pin_params)
     respond_to do |format|
