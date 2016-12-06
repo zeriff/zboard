@@ -38,32 +38,51 @@ class HomeController < ApplicationController
 
   def profile
     @user = User.find_by(username: params[:username])
-    @pins = @user.pins;
+    @pins = @user.pins.paginate(:page => params[:page]).order("created_at desc");
     @boards = Board.where(user_id: @user.id)
     @pinsdata = {
-        pins: @pins.as_json(include: { user: {only: [:username, :avatar]}})
+        pins: @pins.as_json(include: { user: {only: [:username, :avatar]}}),
+        next_page: @pins.next_page,
+        total_pages: @pins.total_pages,
+        previous_page: @pins.previous_page,
+        total_pages: @pins.total_pages
     }
   end
 
   def savedpins
     @user = User.find_by(username: params[:username])
-    @pins = @user.saves.up.saveables
-
+    @pins = Pin.where(id: @user.saves.up.ids).paginate(:page => params[:page]).order("created_at desc")
     @pinsdata = {
-        pins: @pins.as_json(include: { user: {only: [:username, :avatar]}})
+        pins: @pins.as_json(include: { user: {only: [:username, :avatar]}}),
+        next_page: @pins.next_page,
+        total_pages: @pins.total_pages,
+        previous_page: @pins.previous_page,
+        total_pages: @pins.total_pages
     }
   end
 
   def board
     @board = Board.find(params[:board_id])
     @user = User.find_by(username: params[:username])
-    @pins = @board.pins.order("created_at desc").as_json(include: { user: {only: [:username, :avatar]}})
+    @pins = @board.pins.paginate(:page => params[:page]).order("created_at desc")
+    @pinsdata = {
+        pins: @pins.as_json(include: { user: {only: [:username, :avatar]}}),
+        next_page: @pins.next_page,
+        total_pages: @pins.total_pages,
+        previous_page: @pins.previous_page,
+        total_pages: @pins.total_pages
+    }
   end
 
   def pins
     @user = User.find_by(username: params[:username])
+    @pins = @user.pins.paginate(:page => params[:page]).order("created_at desc")
     @pins = {
-        pins: @user.pins.as_json(include: { user: {only: [:username, :avatar]}})
+        pins: @pins.as_json(include: { user: {only: [:username, :avatar]}}),
+        next_page: @pins.next_page,
+        total_pages: @pins.total_pages,
+        previous_page: @pins.previous_page,
+        total_pages: @pins.total_pages
     }
   end
 end

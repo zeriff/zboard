@@ -15,10 +15,13 @@
  *= require 'masonry/transitions'
  *= require 'masonry/infinitescroll'
  *= require sweetalert
+ *= require pace
  *= require_tree .
  */
 
 @import "semantic-ui";
+
+
 
 body{
     width: 100%;

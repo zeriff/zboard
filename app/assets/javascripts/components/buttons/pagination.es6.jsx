@@ -6,7 +6,7 @@ class Pagination extends React.Component {
     previous_page() {
         if (this.state.previous_page) {
             return (
-                <a className="item" href={"/?page=" + this.state.previous_page}>Previous</a>
+                <a className="item" href={"?page=" + this.state.previous_page}>Previous</a>
             )
         } else {
             return (
@@ -18,7 +18,7 @@ class Pagination extends React.Component {
     next_page() {
         if (this.state.next_page) {
             return (
-                <a className="item" href={"/?page=" + this.state.next_page}>Next</a>
+                <a className="item" href={"?page=" + this.state.next_page}>Next</a>
             )
         } else {
             return (

@@ -25,7 +25,7 @@
       = link_to 'Delete', @board, method: :delete, data: { confirm: 'Are you sure?' },class: "ui mini basic red button"
 
 - if @pins.count > 0
-  = react_component("Pins",{data: {pins: @pins}})
+  = react_component("Pins", {data: @pinsdata})
 - else
   %div.ui.two.column.center.aligned.stackable.grid
     %div.six.wide.column

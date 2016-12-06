@@ -6,7 +6,9 @@ class UserList extends React.Component {
         masonry.bind("users", "box");
     }
     componentDidUpdate() {
-        masonry.reload("users")
+        if (this.props.data.length > 0) {
+            masonry.reload("users");
+        }
     }
 
     _renderUsers() {

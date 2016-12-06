@@ -16,6 +16,8 @@ $(document).ready(function() {
     $('form').submit(function() {
         $.blockUI({message: '<div class="ui active dimmer"><div class="ui loader"></div></div>'});
     })
+
+    $('.ui.sidebar').sidebar({context: $('.my-content'), transition: 'scaledown'}).sidebar('attach events', 'a#hamburger-link');
 });
 
 jQuery(window).load(function() {

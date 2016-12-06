@@ -23,6 +23,7 @@
 //= require react_ujs
 //= require components
 //= require axios
+//= require pace.min
 //= require_tree .
 
 // ---
