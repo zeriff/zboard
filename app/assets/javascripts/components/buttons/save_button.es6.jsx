@@ -38,7 +38,7 @@ class SaveButton extends React.Component {
             )
         } else {
             return (
-                <div onClick={this._createSave.bind(this)} className="ui mini basic right floated button">Save</div>
+                <div onClick={this._createSave.bind(this)} className="ui mini basic black right floated button">Save</div>
             )
         }
 

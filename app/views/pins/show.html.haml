@@ -29,8 +29,9 @@
               = link_to "Edit", edit_pin_path(@pin), class: "item"
             - if can? :destroy, @pin
               = link_to 'Delete', @pin, method: :delete, data: { confirm: 'Are you sure?' },class: "item"
-        %img.ui.avatar.image{:src => "#{@pin.user.avatar_url}"}/
-        = @pin.user.username
+        %img.ui.avatar.image{:src => "#{@pin.user.avatar.mini.url}"}/
+        %b
+          = @pin.user.username
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         = link_to @pin.board.name, user_board_path(@pin.user.username, @pin.board.id),class: "ui mini tag red label"
         %div.ui.divider

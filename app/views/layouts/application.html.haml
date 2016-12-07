@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
-    %meta{:content => "width=device-width, initial-scale=0.67, user-scalable=no", :name => "viewport"}
+    %meta{:content => "width=device-width, initial-scale=0.9, user-scalable=no", :name => "viewport"}
     %title MUSIC | ZERIFF
     %link{:rel => "shortcut icon", :href => "/logo.png"}
     = csrf_meta_tags
@@ -14,24 +14,18 @@
         %div.item
           = link_to (image_tag "/logo.png", class: "ui mini image"), root_path
         %div.item
-          = link_to search_path, class: "ui labeled icon button" do
-            %i.search.icon
-            Search
+          = link_to "Search", search_path, class: "ui circular basic black button"
         - if user_signed_in?
           %div.right.menu
             %div.item
-              = link_to new_pin_path, class: "ui labeled icon button" do
-                %i.tag.icon
-                New
-            %div.item.ui.floating.dropdown.button
-              = current_user.username
+              = link_to "New", new_pin_path, class: "ui circular basic black button"
+            %div.item.ui.floating.dropdown
+              %img.ui.mini.circular.image{src: "#{current_user.avatar.mini.url}"}
               %div.menu
                 = link_to "Profile", profile_path(current_user.username), class: "item"
                 = link_to "Find Artists", findfriend_path, class: "item"
                 = link_to "Saved Pins", saved_pins_path(current_user.username), class: "item"
-            %div.item
-              = link_to destroy_user_session_path, method: :delete, class: "ui circular google plus icon button" do
-                %i.power.icon
+                = link_to "Logout", destroy_user_session_path, method: :delete, class: "item"
         - else
           %div.right.menu
             %div.item

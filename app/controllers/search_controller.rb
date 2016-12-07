@@ -53,19 +53,4 @@ class SearchController < ApplicationController
         format.json  { render json: res  }
       end
   end
-
-  private
-
-  def getavatar(user)
-    if user.avatar_url == nil
-      if user.gender == 0
-        return "https://s3.ap-south-1.amazonaws.com/zboarddefaults/boy.png";
-      else
-        return "https://s3.ap-south-1.amazonaws.com/zboarddefaults/girl.png";
-      end
-    else
-      return user.avatar.mini.url
-    end
-  end
-
 end

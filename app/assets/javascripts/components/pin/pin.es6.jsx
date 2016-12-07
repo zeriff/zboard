@@ -2,7 +2,7 @@ class Pin extends React.Component {
     render() {
         return (
             <div className="box">
-                <div className="ui centered raised link card">
+                <div className="ui fluid centered raised link card">
                     <div className="image">
                         <a href={"/pins/" + this.props.pin.id}>
                             <img src={this.props.pin.image.thumb.url} className="ui fluid image"></img>
@@ -10,9 +10,9 @@ class Pin extends React.Component {
                     </div>
                     <div className="content">
                         <img className="mavatar ui avatar right floated image" src={this.props.pin.user.avatar.mini.url}></img>
-                        <b>
+                        <a className="header" href={"/users/" + this.props.pin.user.username}>
                             {this.props.pin.user.username}
-                        </b>
+                        </a>
                         <div className="meta">
                             <span className="date">
                                 {new Date(this.props.pin.created_at).toDateString()}
