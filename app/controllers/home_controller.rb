@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  require 'will_paginate/array'
   respond_to :js
   # ROOT PATH
 
@@ -51,7 +52,7 @@ class HomeController < ApplicationController
 
   def savedpins
     @user = User.find_by(username: params[:username])
-    @pins = Pin.where(id: @user.saves.up.ids).paginate(:page => params[:page]).order("created_at desc")
+    @pins = @user.saves.up.saveables.paginate(:page => params[:page], :per_page => 3)
     @pinsdata = {
         pins: @pins.as_json(include: { user: {only: [:username, :avatar]}}),
         next_page: @pins.next_page,

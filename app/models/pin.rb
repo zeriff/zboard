@@ -18,5 +18,5 @@ class Pin < ApplicationRecord
   validates :pin_url, presence: true
   validates :board_id, presence: true
 
-   self.per_page = 25
+   self.per_page = 20
 end
