@@ -52,7 +52,7 @@ class HomeController < ApplicationController
 
   def savedpins
     @user = User.find_by(username: params[:username])
-    @pins = @user.saves.up.saveables.paginate(:page => params[:page], :per_page => 3)
+    @pins = @user.saves.up.saveables.paginate(:page => params[:page], :per_page => 15)
     @pinsdata = {
         pins: @pins.as_json(include: { user: {only: [:username, :avatar]}}),
         next_page: @pins.next_page,

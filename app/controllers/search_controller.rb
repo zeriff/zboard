@@ -8,7 +8,7 @@ class SearchController < ApplicationController
 
   def find
     @res = PgSearch.multisearch("%#{params[:query]}%")
-    @result = @res.pluck(:searchable_type, :searchable_id).take(10);
+    @result = @res.pluck(:searchable_type, :searchable_id);
     @finalresult = []
     @result.each do |item|
       if item[0] == "Pin"
@@ -23,7 +23,7 @@ class SearchController < ApplicationController
         @user = User.find(item[1])
         @finalresult.push({
             title: @user.username,
-            img: getavatar(@user),
+            img: @user.avatar.thumb.url,
             content: @user.intrest,
             ref:@user.username
         })
