@@ -39,7 +39,7 @@ class SearchArea extends React.Component {
                 <div className="ui two column center aligned stackable grid">
                     <div className="eight wide column">
                         <div className="ui vertical segment center aligned">
-                            <div className="ui right fluid left icon input big">
+                            <div className="ui fluid left icon input big">
                                 <i className="search icon"/>
                                 <input type="text" onKeyUp={this._onKeyUp.bind(this)} placeholder="Search..." autoFocus/>
                             </div>

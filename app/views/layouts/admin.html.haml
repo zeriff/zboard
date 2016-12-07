@@ -2,32 +2,41 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
-    %meta{:content => "width=device-width, initial-scale=0.67, user-scalable=no", :name => "viewport"}
+    %meta{:content => "width=device-width, initial-scale=0.9, user-scalable=no", :name => "viewport"}
     %title MUSIC | ZERIFF
     %link{:rel => "shortcut icon", :href => "/logo.png"}
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %div.ui.top.fixed.mini.menu
+    %div.ui.top.fixed.tiny.borderless.menu
       %div.ui.container
-        %div.header.item
-          = link_to "Dashboard", superuser_dashboard_path, class: "ui circular google plus icon button"
-        = link_to "Users", manage_users_path, class: "item"
-        = link_to "Pins", manage_pins_path, class: "item"
-        .ui.fluid.search.item
-          .ui.icon.input
-            %input.prompt{:placeholder => "Search...", :type => "text"}/
-            %i.search.link.icon
-          .results
-        #desktop.right.menu
-          %div.item.ui.floating.dropdown
-            = current_user.username
-            %div.menu
-              = link_to "Profile", profile_path(current_user.username), class: "item"
-          %div.item
-            = link_to destroy_user_session_path, method: :delete, class: "ui circular google plus icon button" do
-              %i.power.icon
+        %div.item
+          = link_to (image_tag "/logo.png", class: "ui mini image"), root_path
+        %div.item
+          = link_to "Dashboard", superuser_dashboard_path, class: "ui circular basic red button"
+        %div.item
+          = link_to "Users", manage_users_path, class: "ui circular basic black button"
+        %div.item
+          = link_to "Pins", manage_pins_path, class: "ui circular basic black button"
+        %div.item
+          = link_to "Search", search_path, class: "ui circular basic black button"
+        - if user_signed_in?
+          %div.right.menu
+            %div.item.ui.floating.dropdown
+              %img.ui.mini.circular.image{src: "#{current_user.avatar.mini.url}"}
+              %div.menu
+                = link_to "Profile", profile_path(current_user.username), class: "item"
+                = link_to "Find Artists", findfriend_path, class: "item"
+                = link_to "Saved Pins", saved_pins_path(current_user.username), class: "item"
+                = link_to "Logout", destroy_user_session_path, method: :delete, class: "item"
+        - else
+          %div.right.menu
+            %div.item
+              = link_to "Sign In", new_user_session_path, class: "ui basic blue button"
+            %div.item
+              = link_to "Sign Up", new_user_registration_path, class: "ui basic grey button"
+
     - flash.each do |type, msg|
       - if type == 'notice'
         :javascript
@@ -39,5 +48,5 @@
         :javascript
             toastr.error('#{msg}')
     #content
-      %div.ui.container
-        =yield
+      -# %div.ui.container
+      =yield
