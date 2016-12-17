@@ -60,6 +60,8 @@
             %img.ui.circular.z-tiny.image{src: "#{@pin.user.avatar.mini.url}"}
             = @pin.user.username
           .ui.divider
+          %a.ui.tag.teal.tiny.label{href: "/#{@pin.user.username}/board/#{@pin.board.id}"}
+            = @pin.board.name
         .savebutton
           = react_component('SaveButton',{pin: @pin})
 
