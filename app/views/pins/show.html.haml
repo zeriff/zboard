@@ -1,59 +1,71 @@
-.ui.container
-  %div.ui.segment
-    %div.ui.two.column.centered.stackable.grid
-      = link_to @pin.pin_url, target: "_blank", class: "ui left corner label" do
-        %i.clone.icon
-      %div.eleven.wide.column
-        - case @pin.parent_provider
-        - when "Instagram"
-          = @pin.oembed_str.html_safe
-        - when "YouTube"
-          .ui.embed
+.ui.basic.modal
+  %br
+  %br
+  .ui.fluid.raised.card
+    %div.image.item
+      = image_tag @pin.image_url.to_s, :class => "ui centered fluid image"
+    %div.content
+      %span.right.floated.likebutton
+        = react_component("LikeButton",{pin: @pin})
+      .pintitle
+        = @pin.title
+  .ui.fluid.raised.card
+    %div.image.item
+      = image_tag @pin.image_url.to_s, :class => "ui centered fluid image"
+    %div.content
+      %span.right.floated.likebutton
+        = react_component("LikeButton",{pin: @pin})
+      .pintitle
+        = @pin.title
+  .ui.fluid.raised.card
+    %div.image.item
+      = image_tag @pin.image_url.to_s, :class => "ui centered fluid image"
+    %div.content
+      %span.right.floated.likebutton
+        = react_component("LikeButton",{pin: @pin})
+      .pintitle
+        = @pin.title
+  %br
+  %br
+%br
+
+%div.story
+  .ui.z-segment
+    %div.ui.two.column.stackable.grid
+      %div.twelve.wide.column
+        .ui.fluid.raised.card
+          %div.image.item
+          - case @pin.parent_provider
+          - when "Instagram"
             = @pin.oembed_str.html_safe
-        - when "Vine"
-          .ui.embed
-            = @pin.oembed_str.html_safe
-        - when "SoundCloud"
-          .ui.embed
-            = @pin.oembed_str.html_safe
-        - when ""
-          = link_to (image_tag @pin.image_url.to_s, :class => "ui centered fluid image"), @pin.pin_url, target: "_blank"
-      %div.five.wide.column
-        %div.ui.mini.right.floated.basic.icon.dropdown.pointing.floating.button
-          %i.setting.icon
-          %div.menu
-            - if @pin.user != current_user
-              .item
-                Report this
-            - if can? :update, @pin
-              = link_to "Edit", edit_pin_path(@pin), class: "item"
-            - if can? :destroy, @pin
-              = link_to 'Delete', @pin, method: :delete, data: { confirm: 'Are you sure?' },class: "item"
-        %img.ui.avatar.image{:src => "#{@pin.user.avatar.mini.url}"}/
-        %b
-          = @pin.user.username
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        = link_to @pin.board.name, user_board_path(@pin.user.username, @pin.board.id),class: "ui mini tag red label"
-        %div.ui.divider
-        %div.ui.content
-          .ui.header
-            = @pin.title
-          Pin from:
-          %b
-            = link_to @pin.parent_provider, @pin.pin_url, target: "_blank"
-          %div.ui.divider
-    %div.ui.divider
-    %div.ui.two.column.centered.stackable.grid
-      %div.eleven.wide.column
-        - @pin.genre_list.each do |c|
-          %a.ui.mini.horizontal.teal.label
-            = c
-      %div.five.wide.column
+          - when "YouTube"
+            .ui.embed
+              = @pin.oembed_str.html_safe
+          - when "Vine"
+            .ui.embed
+              = @pin.oembed_str.html_safe
+          - when "SoundCloud"
+            .ui.embed
+              = @pin.oembed_str.html_safe
+          - when ""
+            = link_to (image_tag @pin.image_url.to_s, :class => "ui centered fluid image"), @pin.pin_url, target: "_blank"
+          %div.content
+            %span.right.floated.likebutton
+              = react_component("LikeButton",{pin: @pin})
+            .pintitle.show
+              = @pin.title
+      %div.four.wide.column
         %span
-          = react_component("SaveButton",{pin: @pin})
-          = react_component("LikeButton",{pin: @pin})
+          %h5.ui.header
+            %img.ui.circular.z-tiny.image{src: "#{@pin.user.avatar.mini.url}"}
+            = @pin.user.username
+          .ui.divider
+        .savebutton
+          = react_component('SaveButton',{pin: @pin})
+
+%br
+%br
 
 .ui.horizontal.divider
-  .ui.header
-    Suggestions
-= react_component("Pins", {data: {pins:@pins}})
+  You May like
+= react_component('PinsTest', {data: @pins})

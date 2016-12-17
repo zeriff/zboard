@@ -17,6 +17,10 @@ $(document).ready(function() {
         $.blockUI({message: '<div class="ui active dimmer"><div class="ui loader"></div></div>'});
     })
 
+    $('.image.item').bind('click', function() {
+        $('.ui.modal').modal('setting', 'transition', 'scale').modal('show');
+    })
+    // $('.story .image').dimmer({on: 'hover'});
     $('.ui.sidebar').sidebar({context: $('.my-content'), transition: 'scaledown'}).sidebar('attach events', 'a#hamburger-link');
 });
 

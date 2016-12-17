@@ -49,7 +49,7 @@ class LikeButton extends React.Component {
             return (
                 <span>
                     <a>
-                        <i onClick={this._createLike.bind(this)} className="large heart outline like icon"></i>
+                        <i onClick={this._createLike.bind(this)} className="large heart outline icon"></i>
                     </a>
                     {this.state.likesCount}
                 </span>

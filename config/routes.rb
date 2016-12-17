@@ -63,4 +63,9 @@ Rails.application.routes.draw do
   get 'superuser/manage_categories', to: 'superuser#manage_categories', as: :manage_categories
   get 'superuser/manage_currupt', to: 'superuser#manage_currupt', as: :manage_currupt
 
+
+  #*****************API ROUTES*******************
+  #**********************************************
+  get 'api/get_saved', to: 'home#get_saved'
+
 end
