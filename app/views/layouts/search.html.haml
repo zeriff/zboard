@@ -12,12 +12,12 @@
     %div.ui.top.fixed.tiny.borderless.menu
       %div.ui.container
         %div.item
-          = link_to (image_tag "/logo.png", class: "ui mini image"), root_path
+          = link_to (image_tag "/logo.png", class: "ui mini circular image"), root_path
         - if user_signed_in?
           %div.right.menu
             %div.item
               = link_to "New", new_pin_path, class: "ui circular basic black button"
-            %div.item.ui.floating.dropdown
+            %div.item.ui.floating.top.right.pointing.dropdown.button
               %img.ui.mini.circular.image{src: "#{current_user.avatar.mini.url}"}
               %div.menu
                 = link_to "Profile", profile_path(current_user.username), class: "item"

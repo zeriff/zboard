@@ -15,7 +15,7 @@ class PinSearch
                 @finalresult.push(title: @user.username,
                                   img: @user.avatar.thumb.url,
                                   content: @user.intrest,
-                                  ref: @user.username)
+                                  ref: 'users/' + @user.username)
             end
         end
         @finalresult
