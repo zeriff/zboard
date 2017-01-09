@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     # ******************************************
     get '/:username/follows', to: 'home#follows', as: :user_follows
     get '/:username/followers', to: 'home#followers', as: :user_followers
-    get '/:username/savedpins', to: 'home#savedpins', as: :saved_pins
+    get '/:username/savedpins', to: 'home#savedpins', as: :saved_pins, constraints: { username: /[^\/]+/ }
     get '/findfriend', to: 'home#findfriend', as: :findfriend
     get '/users/:username', to: 'home#profile', as: :profile, constraints: { username: /[^\/]+/ }
     get '/:username/board/:board_id', to: 'home#board', as: :user_board, constraints: { username: /[^\/]+/, board_id: /[^\/]+/ }
