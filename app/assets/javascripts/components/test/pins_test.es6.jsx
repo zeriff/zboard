@@ -27,12 +27,13 @@ class PinsTest extends React.Component {
     render() {
 
         return (
-            <div className="ui container">
+            <div className="">
                 <div className="pinstest transitions-enabled" style={{
                     margin: "auto"
                 }}>
                     {this._renderPin()}
                 </div>
+                <Pagination {...this.state}></Pagination>
             </div>
         )
     }
